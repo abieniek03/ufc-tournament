@@ -21,6 +21,10 @@ export default function RootLayout({ children }: Readonly<Props>) {
     <ClerkProvider
       appearance={{
         baseTheme: dark,
+        variables: {
+          colorBackground: "#010918",
+          colorInputBackground: "#090F1B",
+        },
       }}
     >
       <html lang="en">
