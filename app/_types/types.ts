@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export interface IServerComponentProps {
+export interface IServerComponent {
   params: {
     [key: string]: string;
   };

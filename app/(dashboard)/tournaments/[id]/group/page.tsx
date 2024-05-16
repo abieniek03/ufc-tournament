@@ -1,16 +1,12 @@
 import { DashboardPageTitle } from "@/app/_components/dashboard/DashboardPageTitle";
-import {
-  IFight,
-  IScore,
-  IServerComponentProps,
-} from "../../../../_types/types";
+import { IFight, IScore, IServerComponent } from "../../../../_types/types";
 import { fetchData } from "@/app/_utils/fetch/fetchData";
 import { ITournament } from "../../../../_types/types";
 import { Fight } from "@/app/_components/dashboard/Fight";
 
-export default async function TournamentDetailsPage({
+export default async function TournamentGroupPage({
   params,
-}: Readonly<IServerComponentProps>) {
+}: Readonly<IServerComponent>) {
   const tournament: { data: ITournament } = await fetchData(
     `/tournaments/${params.id}`,
   );
@@ -36,7 +32,7 @@ export default async function TournamentDetailsPage({
       </header>
       <section className="mb-16 border-b border-content/5 pb-16">
         <table className="w-full bg-background text-left text-sm">
-          <thead className="h-10 bg-content/5 bg-gray-50 text-xs uppercase">
+          <thead className="h-10 bg-content/5 text-xs uppercase">
             <tr>
               <th scope="col" colSpan={2} className="w-16 pl-10 lg:w-20 ">
                 Name
