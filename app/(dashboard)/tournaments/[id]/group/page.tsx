@@ -1,7 +1,12 @@
 import { DashboardPageTitle } from "@/app/_components/dashboard/DashboardPageTitle";
-import { IScore, IServerComponentProps } from "../../../_types/types";
+import {
+  IFight,
+  IScore,
+  IServerComponentProps,
+} from "../../../../_types/types";
 import { fetchData } from "@/app/_utils/fetch/fetchData";
-import { ITournament } from "../../../_types/types";
+import { ITournament } from "../../../../_types/types";
+import { Fight } from "@/app/_components/dashboard/Fight";
 
 export default async function TournamentDetailsPage({
   params,
@@ -11,6 +16,14 @@ export default async function TournamentDetailsPage({
   );
 
   const score: { data: IScore[] } = await fetchData(`/score/${params.id}`);
+
+  const firstRoundFights: { data: IFight[] } = await fetchData(
+    `/fights/${params.id}?level=ROUND_1`,
+  );
+
+  const secondRoundFights: { data: IFight[] } = await fetchData(
+    `/fights/${params.id}?level=ROUND_2`,
+  );
 
   return (
     <>
@@ -74,7 +87,10 @@ export default async function TournamentDetailsPage({
           </thead>
           <tbody>
             {score.data.map((el: IScore, index: number) => (
-              <tr className="h-10 border-b border-content/5 even:bg-hover">
+              <tr
+                className="h-10 border-b border-content/5 even:bg-hover"
+                key={index}
+              >
                 <td className="w-10 text-center">{index + 1}</td>
                 <td scope="row">
                   {el.fighter.firstName} {el.fighter.lastName}
@@ -103,6 +119,28 @@ export default async function TournamentDetailsPage({
             ))}
           </tbody>
         </table>
+      </section>
+      <section>
+        <div className="mb-24">
+          <h2 className="text-center text-xl font-bold uppercase lg:text-2xl">
+            Round 1
+          </h2>
+          <div className="my-16 flex flex-col gap-4">
+            {firstRoundFights.data.map((el: IFight, index: number) => (
+              <Fight data={el} key={index} />
+            ))}
+          </div>
+        </div>
+        <div className="mb-24">
+          <h2 className="text-center text-xl font-bold uppercase lg:text-2xl">
+            Round 2
+          </h2>
+          <div className="my-16 flex flex-col gap-4">
+            {secondRoundFights.data.map((el: IFight, index: number) => (
+              <Fight data={el} key={index} />
+            ))}
+          </div>{" "}
+        </div>
       </section>
     </>
   );

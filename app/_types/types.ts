@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 export interface IServerComponentProps {
   params: {
-    id: string;
+    [key: string]: string;
   };
   searchParams: {};
 }
@@ -42,4 +42,20 @@ export interface IScore {
   secondRoundFinish: number;
   thirdRoundFinish: number;
   points: number;
+}
+
+export interface IFight {
+  redFighterId: string;
+  blueFighterId: string;
+  redFighter: {
+    firstName: string;
+    lastName: string;
+  };
+  blueFighter: {
+    firstName: string;
+    lastName: string;
+  };
+  winner: string | null;
+  method: string | null;
+  round: number | null;
 }
