@@ -1,4 +1,4 @@
-import { Children as Props } from "../_types/types";
+import { IChildren as Props } from "../_types/types";
 
 export default function AuthLayout({ children }: Readonly<Props>) {
   return (
