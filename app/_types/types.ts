@@ -1,5 +1,11 @@
 import type { ReactNode } from "react";
 
-export interface IChildren {
-	children: ReactNode;
+export interface Children {
+  children: ReactNode;
+}
+
+export interface Weightclass {
+  id: string;
+  name: string;
+  limit: number;
 }
