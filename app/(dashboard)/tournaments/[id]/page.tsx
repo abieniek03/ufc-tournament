@@ -11,7 +11,7 @@ export default async function TournamentDetailsPage({
   );
 
   const score: { data: IScore[] } = await fetchData(`/score/${params.id}`);
-  console.log(score);
+
   return (
     <>
       <header className="mb-8">
@@ -21,41 +21,86 @@ export default async function TournamentDetailsPage({
           {tournament.data.weightclass.limit} lbs
         </p>
       </header>
-      <section>
-        <table className="w-full table-auto rounded-lg border border-content/10 rtl:text-right">
-          <thead className="bg-hover ">
-            <tr className="h-10">
-              <td colSpan={2} className="pl-10">
-                Fighter
-              </td>
-              <td>Fights</td>
-              <td className="hidden text-center">Win</td>
-              <td className="hidden text-center">Lose</td>
-              <td className="hidden text-center">Draw</td>
-              <td className="hidden text-center">1RF</td>
-              <td className="hidden text-center">2RF</td>
-              <td className="hidden text-center">3RF</td>
-              <td>Points</td>
+      <section className="mb-16 border-b border-content/5 pb-16">
+        <table className="w-full bg-background text-left text-sm">
+          <thead className="h-10 bg-content/5 bg-gray-50 text-xs uppercase">
+            <tr>
+              <th scope="col" colSpan={2} className="w-16 pl-10 lg:w-20 ">
+                Name
+              </th>
+              <th scope="col" className="w-16 text-center lg:w-20">
+                Fights
+              </th>
+              <th
+                scope="col"
+                className="hidden w-16 text-center md:table-cell lg:w-20"
+              >
+                Win
+              </th>
+              <th
+                scope="col"
+                className="hidden w-16 text-center md:table-cell lg:w-20"
+              >
+                Lose
+              </th>
+              <th
+                scope="col"
+                className="hidden w-16 text-center md:table-cell lg:w-20"
+              >
+                Draw
+              </th>
+              <th
+                scope="col"
+                className="hidden w-16 text-center lg:table-cell lg:w-20"
+              >
+                1RF
+              </th>
+              <th
+                scope="col"
+                className="hidden w-16 text-center lg:table-cell lg:w-20"
+              >
+                2RF
+              </th>
+              <th
+                scope="col"
+                className="hidden w-16 text-center lg:table-cell lg:w-20"
+              >
+                3RF
+              </th>
+              <th scope="col" className="w-16 text-center lg:w-20">
+                Points
+              </th>
             </tr>
           </thead>
           <tbody>
             {score.data.map((el: IScore, index: number) => (
-              <tr className="h-10 bg-lime-400">
-                <td className="bg-red-500 text-center">{index + 1}</td>
-                <td>
+              <tr className="h-10 border-b border-content/5 even:bg-hover">
+                <td className="w-10 text-center">{index + 1}</td>
+                <td scope="row">
                   {el.fighter.firstName} {el.fighter.lastName}
                 </td>
-                <td className="text-center">{el.fights}</td>
-                <td className="hidden text-center">{el.win}</td>
-                <td className="hidden text-center">{el.lose}</td>
-                <td className="hidden text-center">{el.draw}</td>
-                <td className="hidden text-center"> {el.firstRoundFinish}</td>
-                <td className="hidden text-center">{el.secondRoundFinish}</td>
-                <td className="hidden text-center">{el.thirdRoundFinish}</td>
-                <td className="text-center">{el.points}</td>
+                <td className="w-16 text-center lg:w-20">{el.fights}</td>
+                <td className="hidden w-16 text-center md:table-cell lg:w-20">
+                  {el.win}
+                </td>
+                <td className="hidden w-16 text-center md:table-cell lg:w-20">
+                  {el.lose}
+                </td>
+                <td className="hidden w-16 text-center md:table-cell lg:w-20">
+                  {el.draw}
+                </td>
+                <td className="hidden w-16 text-center lg:table-cell lg:w-20">
+                  {el.firstRoundFinish}
+                </td>
+                <td className="hidden w-16 text-center lg:table-cell lg:w-20">
+                  {el.secondRoundFinish}
+                </td>
+                <td className="hidden w-16 text-center lg:table-cell lg:w-20">
+                  {el.thirdRoundFinish}
+                </td>
+                <td className="w-16 text-center lg:w-20">{el.points}</td>
               </tr>
             ))}
-            <td></td>
           </tbody>
         </table>
       </section>
