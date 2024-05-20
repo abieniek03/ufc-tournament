@@ -1,16 +1,56 @@
-import { IServerComponent, IScore, IFight } from "@/app/_types/types";
-import { fetchData } from "@/app/_utils/fetch/fetchData";
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function TournamrntPage({
-  params,
-}: Readonly<IServerComponent>) {
-  const allFights: { data: IFight[] } = await fetchData(
-    `/fights/${params.id}?level=ROUND_2`,
-  );
-  const score: { data: IScore[] } = await fetchData(`/score/${params.id}`);
+import { usePathname, useRouter } from "next/navigation";
 
-  allFights.data.length > score.data.length
-    ? redirect(`/tournaments/${params.id}/knockout`)
-    : redirect(`/tournaments/${params.id}/group`);
+import { useQuery } from "@tanstack/react-query";
+import { IScore, IFight } from "@/app/_types/types";
+import axios from "@/app/_utils/axios/axiosInstance";
+import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
+
+import { Loading } from "@/app/_components/Loading";
+import { useEffect } from "react";
+
+export default function TournamrntPage() {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const id = pathname.split("/")[2];
+  const authToken = getAuthToken();
+
+  const fights = useQuery({
+    queryKey: ["fights"],
+    queryFn: async () => {
+      const response = await axios.get(`/fights/${id}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      return response.data;
+    },
+  });
+
+  const score = useQuery({
+    queryKey: ["fights"],
+    queryFn: async () => {
+      const response = await axios.get(`/score/${id}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      return response.data;
+    },
+  });
+
+  const redirectToStage = (fights: IFight[], score: IScore[]) => {
+    router.push(
+      `${fights.length > score.length ? `/tournaments/${id}/knockout` : `/tournaments/${id}/group`}`,
+    );
+  };
+
+  useEffect(() => {
+    if (!fights.isLoading && !score.isLoading)
+      redirectToStage(fights.data, score.data);
+  }, [score, fights]);
+
+  return <Loading />;
 }

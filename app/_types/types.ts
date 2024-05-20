@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+export type Stage = "GROUP" | "KNOCKOUT" | "LOADING";
+
 export interface IServerComponent {
   params: {
     [key: string]: string;

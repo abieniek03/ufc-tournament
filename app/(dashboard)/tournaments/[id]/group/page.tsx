@@ -122,21 +122,24 @@ export default async function TournamentGroupPage({
             Round 1
           </h2>
           <div className="my-16 flex flex-col gap-4">
-            {firstRoundFights.data.map((el: IFight, index: number) => (
-              <Fight data={el} key={index} />
-            ))}
+            {firstRoundFights.data &&
+              firstRoundFights.data.map((el: IFight, index: number) => (
+                <Fight data={el} key={index} />
+              ))}
           </div>
         </div>
-        <div className="mb-24">
-          <h2 className="text-center text-xl font-bold uppercase lg:text-2xl">
-            Round 2
-          </h2>
-          <div className="my-16 flex flex-col gap-4">
-            {secondRoundFights.data.map((el: IFight, index: number) => (
-              <Fight data={el} key={index} />
-            ))}
-          </div>{" "}
-        </div>
+        {secondRoundFights.data && (
+          <div className="mb-24">
+            <h2 className="text-center text-xl font-bold uppercase lg:text-2xl">
+              Round 2
+            </h2>
+            <div className="my-16 flex flex-col gap-4">
+              {secondRoundFights.data.map((el: IFight, index: number) => (
+                <Fight data={el} key={index} />
+              ))}
+            </div>
+          </div>
+        )}
       </section>
     </>
   );
