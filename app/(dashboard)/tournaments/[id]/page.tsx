@@ -1,10 +1,9 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-
 import { useQuery } from "@tanstack/react-query";
-import { IScore, IFight } from "@/app/_types/types";
 import axios from "@/app/_utils/axios/axiosInstance";
+import { IScore, IFight } from "@/app/_types/types";
 import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 
 import { Loading } from "@/app/_components/Loading";

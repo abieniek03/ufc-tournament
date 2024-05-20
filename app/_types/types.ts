@@ -1,6 +1,4 @@
-import type { ReactNode } from "react";
-
-export type Stage = "GROUP" | "KNOCKOUT" | "LOADING";
+import { type ReactNode } from "react";
 
 export interface IServerComponent {
   params: {

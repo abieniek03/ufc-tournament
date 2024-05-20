@@ -1,12 +1,11 @@
-import { type ReactNode } from "react";
 import Link from "next/link";
+import { IChildren } from "../_types/types";
 import clsx from "clsx";
 
 type ButtonStyleType = "primary" | "secondary";
 
-interface Props {
+interface Props extends IChildren {
   styleType: ButtonStyleType;
-  children: ReactNode;
   loading?: boolean;
   path?: string;
 }
