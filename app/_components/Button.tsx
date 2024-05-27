@@ -17,7 +17,7 @@ export function Button({
   path,
 }: Readonly<Props>) {
   const buttonStyles = clsx(
-    "rounded-md px-3 py-1.5 transition-all duration-200 outline-primary bg-primary text-sm hover:opacity-95 border",
+    "rounded-md px-6 py-1 transition-all duration-200 outline-primary bg-primary text-sm hover:opacity-95 border",
     styleType === "primary" &&
       "bg-primary text-primary-content border-transparent",
     styleType === "secondary" && "bg-primary/5 hover:bg-primary/10",

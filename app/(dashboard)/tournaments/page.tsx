@@ -17,14 +17,18 @@ export default async function TournamentsPage() {
         </Button>
       </div>
       <div className="flex flex-col gap-4">
-        {userTournaments.data.map((el: ITournament, index: number) => (
-          <Tournament
-            key={index}
-            id={el.id}
-            name={el.name}
-            weightclassId={el.weightclassId}
-          />
-        ))}
+        {userTournaments.data ? (
+          userTournaments.data.map((el: ITournament, index: number) => (
+            <Tournament
+              key={index}
+              id={el.id}
+              name={el.name}
+              weightclassId={el.weightclassId}
+            />
+          ))
+        ) : (
+          <p className="text-center">Nie znaleziono żadnego turnieju</p>
+        )}
       </div>
     </>
   );

@@ -55,7 +55,15 @@ export interface IFight {
     firstName: string;
     lastName: string;
   };
+  redScore: {
+    ranking: number;
+  };
+  blueScore: {
+    ranking: number;
+  };
   winner: string | null;
-  method: string | null;
   round: number | null;
+  time: string | null;
+  method: string | null;
+  description: string | null;
 }

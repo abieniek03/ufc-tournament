@@ -58,7 +58,7 @@ export function Fight({ data }: Readonly<Props>) {
             </span>
           )}
           <span className="border-t border-content/5 px-5 pt-2 text-center text-sm font-bold">
-            R{data.round}, {data.method}
+            R{data.round} {data.time}, {data.method} ({data.description})
           </span>
         </div>
       )}
