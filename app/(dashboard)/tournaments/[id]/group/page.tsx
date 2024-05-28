@@ -1,8 +1,13 @@
 import { DashboardPageTitle } from "@/app/_components/dashboard/DashboardPageTitle";
-import { IFight, IScore, IServerComponent } from "../../../../_types/types";
+import {
+  IFight,
+  IScore,
+  IServerComponent,
+  ITournament,
+} from "../../../../_types/types";
 import { fetchData } from "@/app/_utils/fetch/fetchData";
-import { ITournament } from "../../../../_types/types";
-import { Fight } from "@/app/_components/dashboard/Fight";
+
+import { FightLabel } from "@/app/_components/dashboard/FightLabel";
 
 export default async function TournamentGroupPage({
   params,
@@ -124,7 +129,7 @@ export default async function TournamentGroupPage({
           <div className="my-16 flex flex-col gap-4">
             {firstRoundFights.data &&
               firstRoundFights.data.map((el: IFight, index: number) => (
-                <Fight data={el} key={index} />
+                <FightLabel data={el} key={index} />
               ))}
           </div>
         </div>
@@ -135,7 +140,7 @@ export default async function TournamentGroupPage({
             </h2>
             <div className="my-16 flex flex-col gap-4">
               {secondRoundFights.data.map((el: IFight, index: number) => (
-                <Fight data={el} key={index} />
+                <FightLabel data={el} key={index} />
               ))}
             </div>
           </div>

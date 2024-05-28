@@ -1,3 +1,4 @@
+import { type ComponentProps } from "react";
 import Link from "next/link";
 import { IChildren } from "../_types/types";
 import clsx from "clsx";
@@ -15,9 +16,10 @@ export function Button({
   children,
   loading,
   path,
-}: Readonly<Props>) {
+  ...rest
+}: Readonly<ComponentProps<"button"> & Props>) {
   const buttonStyles = clsx(
-    "rounded-md px-6 py-1 transition-all duration-200 outline-primary bg-primary text-sm hover:opacity-95 border",
+    "rounded-md px-6 py-2 transition-all duration-200 outline-primary bg-primary text-sm hover:opacity-95 border",
     styleType === "primary" &&
       "bg-primary text-primary-content border-transparent",
     styleType === "secondary" && "bg-primary/5 hover:bg-primary/10",
@@ -34,7 +36,7 @@ export function Button({
   }
 
   return (
-    <button className={buttonStyles} disabled={loading}>
+    <button className={buttonStyles} disabled={loading} {...rest}>
       {loading ? (
         <svg
           aria-hidden="true"

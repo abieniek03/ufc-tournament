@@ -15,6 +15,8 @@ const config: Config = {
         primary: "#FFFFFF",
         "primary-content": "#1F1F23",
         lights: "#3065C1",
+        error: "#ef4444",
+        gold: "#D4AF37",
       },
       keyframes: {
         overlayShow: {

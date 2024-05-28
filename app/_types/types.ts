@@ -1,5 +1,7 @@
 import { type ReactNode } from "react";
 
+export type Step = "Data" | "Choose Fighters";
+
 export interface IServerComponent {
   params: {
     [key: string]: string;
@@ -66,4 +68,9 @@ export interface IFight {
   time: string | null;
   method: string | null;
   description: string | null;
+}
+
+export interface IOption {
+  id: string;
+  label: string;
 }

@@ -13,7 +13,7 @@ export function WinnerLabel() {
   );
 }
 
-export function Fight({ data }: Readonly<Props>) {
+export function FightLabel({ data }: Readonly<Props>) {
   return (
     <div className="mx-auto mb-4 w-full border-b border-content/5 px-4 pb-4 text-xl">
       <div className="mb-4 grid w-full grid-cols-3 font-bold uppercase">
