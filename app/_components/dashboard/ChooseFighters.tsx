@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, type ComponentProps } from "react";
+import { type ComponentProps } from "react";
 import clsx from "clsx";
 import { useCreateTournamentStore } from "@/app/_store/store";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "@/app/_utils/axios/axiosInstance";
 import { Button } from "../Button";
+import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
+import { useRouter } from "next/navigation";
+import { LoadingPopup } from "../LoadingPopup";
 
 interface Props {
   id: string;
@@ -20,9 +23,7 @@ function FighterElement({
   ...rest
 }: Readonly<ComponentProps<"button"> & Props>) {
   const isChampion = ranking === 0;
-  const selectedFighters = useCreateTournamentStore(
-    (state) => state.selectedFighters,
-  );
+  const selectedFighters = useCreateTournamentStore((state) => state.fighters);
 
   return (
     <button
@@ -51,9 +52,11 @@ function FighterElement({
 }
 
 export function ChooseFighters() {
+  const router = useRouter();
   const createTournamentStore = useCreateTournamentStore();
+  const token = getAuthToken();
 
-  const { isPending, data } = useQuery({
+  const fetchFighters = useQuery({
     queryKey: ["fighters"],
     queryFn: async () => {
       try {
@@ -67,38 +70,59 @@ export function ChooseFighters() {
     },
   });
 
-  const createTourmanent = () => {
-    console.log(createTournamentStore.getData());
-  };
+  const createTourmanent = useMutation({
+    mutationKey: ["createTournament"],
+    mutationFn: async () => {
+      const data = createTournamentStore.getData();
+      try {
+        const response = await axios.post("/tournaments", data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        router.push(`/tournaments/${response.data.data.id}`);
+      } catch (error: any) {
+        console.error(error);
+      }
+    },
+  });
 
   return (
     <div>
       <p>Choose 8 or 16 fighters to the tournament.</p>
       <div className="my-4 grid gap-2">
-        {isPending
+        {fetchFighters.isPending
           ? Array.from({ length: 16 }, (_, index) => (
               <div
                 key={index}
                 className="h-[40px] animate-pulse bg-content/10"
               />
             ))
-          : data?.map((el: any, index: number) => (
+          : fetchFighters.data?.map((el: any, index: number) => (
               <FighterElement
                 key={index}
                 id={`${el.id}#${el.ranking?.position || "NR"}`}
                 fullName={`${el.firstName} ${el.lastName}`}
                 ranking={el.ranking?.position}
                 onClick={() =>
-                  createTournamentStore.updateSelectedFighters(
+                  createTournamentStore.updateFighters(
                     `${el.id}#${el.ranking?.position || "NR"}`,
                   )
                 }
               />
             ))}
       </div>
-      <Button styleType="primary" onClick={createTourmanent}>
+      <Button
+        styleType="primary"
+        loading={createTourmanent.isPending}
+        onClick={() => {
+          createTourmanent.mutate();
+        }}
+      >
         Create tournament
       </Button>
+      {createTourmanent.isPending && <LoadingPopup />}
     </div>
   );
 }

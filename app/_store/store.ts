@@ -3,30 +3,30 @@ import { create } from "zustand";
 type State = {
   name: string;
   weightclassId: string;
-  selectedFighters: string[];
+  fighters: string[];
 };
 
 type Action = {
   updateData: (name: string, weightclassId: string) => void;
-  updateSelectedFighters: (fighterId: string) => void;
+  updateFighters: (fighterId: string) => void;
   getData: () => State;
 };
 
 export const useCreateTournamentStore = create<State & Action>((set, get) => ({
   name: "",
   weightclassId: "",
-  selectedFighters: [],
+  fighters: [],
   updateData: (name: string, weightclassId: string) =>
     set(() => ({ name, weightclassId })),
-  updateSelectedFighters: (fighterId) =>
+  updateFighters: (fighterId) =>
     set((prevState) => ({
-      selectedFighters: prevState.selectedFighters.includes(fighterId)
-        ? prevState.selectedFighters.filter((id) => id !== fighterId)
-        : [...prevState.selectedFighters, fighterId],
+      fighters: prevState.fighters.includes(fighterId)
+        ? prevState.fighters.filter((id) => id !== fighterId)
+        : [...prevState.fighters, fighterId],
     })),
   getData: () => ({
     name: get().name,
     weightclassId: get().weightclassId,
-    selectedFighters: get().selectedFighters,
+    fighters: get().fighters,
   }),
 }));
