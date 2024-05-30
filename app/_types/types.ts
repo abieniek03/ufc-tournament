@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 
+export type ButtonStyleType = "primary" | "secondary" | "delete";
 export type Step = "Data" | "Choose Fighters";
 
 export interface IServerComponent {

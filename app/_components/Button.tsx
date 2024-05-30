@@ -1,9 +1,7 @@
 import { type ComponentProps } from "react";
 import Link from "next/link";
-import { IChildren } from "../_types/types";
 import clsx from "clsx";
-
-type ButtonStyleType = "primary" | "secondary";
+import { IChildren, ButtonStyleType } from "../_types/types";
 
 interface Props extends IChildren {
   styleType: ButtonStyleType;
@@ -25,6 +23,7 @@ export function Button({
     styleType === "primary" &&
       "bg-primary text-primary-content border-transparent",
     styleType === "secondary" && "bg-primary/5 hover:bg-primary/10",
+    styleType === "delete" && "bg-red-500 hover:bg-red-600 border-transparent",
     loading ? "opacity-75" : "hover:opacity-95",
     wFull && "w-full",
   );

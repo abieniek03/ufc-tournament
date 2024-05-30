@@ -9,13 +9,18 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { Button } from "./Button";
-import { IChildren } from "../_types/types";
+import { IChildren, ButtonStyleType } from "../_types/types";
 
 interface Props extends IChildren {
+  triggerButtonStyle: ButtonStyleType;
   title: string;
 }
 
-export function Modal({ title, children }: Readonly<Props>) {
+export function Modal({
+  title,
+  triggerButtonStyle,
+  children,
+}: Readonly<Props>) {
   let [isOpen, setIsOpen] = useState<boolean>(false);
 
   const open = () => {
@@ -30,8 +35,8 @@ export function Modal({ title, children }: Readonly<Props>) {
 
   return (
     <>
-      <Button styleType="primary" onClick={open}>
-        Update result
+      <Button styleType={triggerButtonStyle || "primary"} onClick={open}>
+        {title}
       </Button>
 
       <Transition appear show={isOpen}>
@@ -51,8 +56,8 @@ export function Modal({ title, children }: Readonly<Props>) {
                 leaveFrom="opacity-100 transform-[scale(100%)]"
                 leaveTo="opacity-0 transform-[scale(95%)]"
               >
-                <DialogPanel className="w-full max-w-md rounded-xl bg-content/5 p-6 backdrop-blur-2xl">
-                  <div className="mb-6 flex items-center justify-between font-semibold">
+                <DialogPanel className="w-full max-w-xl rounded-xl bg-content/5 p-6 backdrop-blur-2xl">
+                  <div className="mb-2 flex items-center justify-between font-semibold">
                     <DialogTitle as="h3" className="text-lg/7 text-content">
                       {title}
                     </DialogTitle>
