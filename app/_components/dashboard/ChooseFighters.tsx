@@ -115,7 +115,6 @@ export function ChooseFighters() {
       </div>
       <Button
         styleType="primary"
-        loading={createTourmanent.isPending}
         onClick={() => {
           createTourmanent.mutate();
         }}
