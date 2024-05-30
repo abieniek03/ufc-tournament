@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { fetchData } from "@/app/_utils/fetch/fetchData";
-import { Weightclass } from "@/app/_types/types";
+import { IWeightclass } from "@/app/_types/types";
 
 export interface Props {
   id: string;
@@ -9,7 +9,7 @@ export interface Props {
 }
 
 export async function Tournament({ id, name, weightclassId }: Readonly<Props>) {
-  const weightclass: { data: Weightclass } = await fetchData(
+  const weightclass: { data: IWeightclass } = await fetchData(
     `/weightclass/${weightclassId}`,
   );
 

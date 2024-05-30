@@ -63,25 +63,27 @@ export function FightLabel({ data }: Readonly<Props>) {
           </span>
         </div>
       ) : (
-        <div className="flex justify-center">
-          <UpdateFightResult
-            fightId={data.id}
-            fighters={[
-              {
-                id: data.redFighterId,
-                label: `${data.redFighter.firstName} ${data.redFighter.lastName}`,
-              },
-              {
-                id: data.blueFighterId,
-                label: `${data.blueFighter.firstName} ${data.blueFighter.lastName}`,
-              },
-              {
-                id: "DRAW",
-                label: "DRAW",
-              },
-            ]}
-          />
-        </div>
+        data.blueFighterId && (
+          <div className="flex justify-center">
+            <UpdateFightResult
+              fightId={data.id}
+              fighters={[
+                {
+                  id: data.redFighterId,
+                  label: `${data.redFighter.firstName} ${data.redFighter.lastName}`,
+                },
+                {
+                  id: data.blueFighterId,
+                  label: `${data.blueFighter?.firstName} ${data.blueFighter?.lastName}`,
+                },
+                {
+                  id: "DRAW",
+                  label: "DRAW",
+                },
+              ]}
+            />
+          </div>
+        )
       )}
     </div>
   );

@@ -27,7 +27,7 @@ export default async function TournamentsPage() {
             />
           ))
         ) : (
-          <p className="text-center">Nie znaleziono żadnego turnieju</p>
+          <p className="text-center">No tournament found.</p>
         )}
       </div>
     </>

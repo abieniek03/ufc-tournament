@@ -2,6 +2,7 @@ import { type ReactNode } from "react";
 
 export type ButtonStyleType = "primary" | "secondary" | "delete";
 export type Step = "Data" | "Choose Fighters";
+export type Level = "ROUND_1" | "ROUND_2";
 
 export interface IServerComponent {
   params: {
