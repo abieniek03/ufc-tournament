@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import "remixicon/fonts/remixicon.css";
 
 import { IChildren as Props } from "./_types/types";
 import { ClerkProvider } from "@clerk/nextjs";
