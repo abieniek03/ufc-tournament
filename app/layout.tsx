@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import "remixicon/fonts/remixicon.css";
 
 import { IChildren as Props } from "./_types/types";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import Providers from "./_hoc/Providers";
 
 const font = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -29,7 +31,7 @@ export default function RootLayout({ children }: Readonly<Props>) {
     >
       <html lang="en">
         <body className={`${font.className} bg-background text-content`}>
-          {children}
+          <Providers>{children}</Providers>
         </body>
       </html>
     </ClerkProvider>

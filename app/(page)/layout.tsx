@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 export default function PageLayout({ children }: Readonly<Props>) {
   const { userId } = auth();
 
-  if (userId) redirect("/dashboard");
+  if (userId) redirect("/tournaments");
 
   return (
     <>
