@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
-  // "https://ufc-tournament-backend-6cxuobdvr-abieniek03s-projects.vercel.app/",
+  baseURL: process.env.API_BASE_URL,
 });
 
 export default instance;
