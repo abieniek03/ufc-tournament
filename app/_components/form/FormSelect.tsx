@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormContext, useController } from "react-hook-form";
-import { stylesFormField } from "@/app/_styles/styles";
+import { stylesFormLabel, stylesFormField } from "@/app/_styles/styles";
 import { IOption } from "@/app/_types/types";
 import clsx from "clsx";
 
@@ -25,7 +25,7 @@ export function FormSelect({ id, label, options, form }: Readonly<Props>) {
 
   return (
     <div className="mb-3 text-sm">
-      <label htmlFor={id} className="mb-2 block">
+      <label htmlFor={id} className={stylesFormLabel}>
         {label}
       </label>
       <select

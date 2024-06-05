@@ -19,9 +19,9 @@ export function Button({
   ...rest
 }: Readonly<ComponentProps<"button"> & Props>) {
   const buttonStyles = clsx(
-    "rounded-md px-6 py-2 transition-all duration-200 outline-primary bg-primary text-sm border",
+    "rounded-md px-6 py-2 transition-all duration-200 outline-primary bg-primary text-xs border",
     styleType === "primary" &&
-      "bg-primary text-primary-content border-transparent",
+      "bg-primary-500 text-primary-content border-transparent hover:bg-primary-600",
     styleType === "secondary" && "bg-primary/5 hover:bg-primary/10",
     styleType === "delete" && "bg-red-500 hover:bg-red-600 border-transparent",
     loading ? "opacity-75" : "hover:opacity-95",

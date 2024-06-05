@@ -3,7 +3,7 @@ export function Loading() {
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <svg
         aria-hidden="true"
-        className="h-16 w-16 animate-spin fill-primary text-content/10"
+        className="fill-primary-500 h-16 w-16 animate-spin text-content/10"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

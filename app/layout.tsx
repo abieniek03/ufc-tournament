@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 
@@ -8,7 +8,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import Providers from "./_hoc/Providers";
 
-const font = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
+const font = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
   title: {
@@ -24,8 +24,9 @@ export default function RootLayout({ children }: Readonly<Props>) {
       appearance={{
         baseTheme: dark,
         variables: {
-          colorBackground: "#010918",
-          colorInputBackground: "#090F1B",
+          colorBackground: "#0e0e11",
+          colorInputBackground: "#18181b",
+          colorPrimary: "#faff00",
         },
       }}
     >
