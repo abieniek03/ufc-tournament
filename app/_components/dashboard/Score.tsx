@@ -11,9 +11,9 @@ export async function Score({ tournamentId }: Readonly<Props>) {
   return (
     <section className="mb-16 border-b border-content/5 pb-16">
       <table className="w-full bg-background text-left text-sm">
-        <thead className="h-10 bg-content/5 text-xs uppercase">
+        <thead className="h-10 bg-primary-500 text-xs uppercase text-primary-content">
           <tr>
-            <th scope="col" colSpan={2} className="w-16 pl-10 lg:w-20 ">
+            <th scope="col" colSpan={2} className="w-16 pl-14 lg:w-20">
               Name
             </th>
             <th scope="col" className="w-16 text-center lg:w-20">
@@ -63,12 +63,15 @@ export async function Score({ tournamentId }: Readonly<Props>) {
         <tbody>
           {score.data.map((el: IScore, index: number) => (
             <tr
-              className="h-10 border-b border-content/5 even:bg-hover"
+              className="even:bg-hover h-10 border-b border-primary-500/25"
               key={index}
             >
-              <td className="w-10 text-center">{index + 1}</td>
-              <td scope="row">
-                {el.fighter.firstName} {el.fighter.lastName}
+              <td className="w-10 text-center font-bold">{index + 1}</td>
+              <td scope="row" className="pl-4">
+                {el.fighter.firstName}{" "}
+                <span className="font-bold uppercase">
+                  {el.fighter.lastName}
+                </span>
               </td>
               <td className="w-16 text-center lg:w-20">{el.fights}</td>
               <td className="hidden w-16 text-center md:table-cell lg:w-20">
