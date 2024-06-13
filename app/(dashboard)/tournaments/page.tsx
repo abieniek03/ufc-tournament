@@ -2,7 +2,7 @@ import { Button } from "@/app/_components/Button";
 import { DashboardPageTitle } from "@/app/_components/dashboard/DashboardPageTitle";
 import { Tournament } from "@/app/_components/dashboard/Tournament";
 import { fetchData } from "@/app/_utils/fetch/fetchData";
-import { Props as ITournament } from "@/app/_components/dashboard/Tournament";
+import { ITournament } from "@/app/_types/types";
 
 export default async function TournamentsPage() {
   const userTournaments: { data: ITournament[] } =
@@ -16,15 +16,10 @@ export default async function TournamentsPage() {
           Create new
         </Button>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {userTournaments.data ? (
           userTournaments.data.map((el: ITournament, index: number) => (
-            <Tournament
-              key={index}
-              id={el.id}
-              name={el.name}
-              weightclassId={el.weightclassId}
-            />
+            <Tournament key={index} data={el} />
           ))
         ) : (
           <p className="text-center">No tournament found.</p>

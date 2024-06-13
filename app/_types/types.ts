@@ -23,7 +23,6 @@ export interface IWeightclass {
 
 export interface ITournament {
   id: string;
-  name: string;
   weightclassId: string;
   fighters: number;
   createdAt: string;

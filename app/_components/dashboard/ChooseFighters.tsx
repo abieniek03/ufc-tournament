@@ -1,16 +1,15 @@
 "use client";
 
-import { useCreateTournamentStore } from "@/app/_store/store";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import axios from "@/app/_utils/axios/axiosInstance";
-import { Button } from "../Button";
-import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 import { useRouter } from "next/navigation";
+import clsx from "clsx";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useCreateTournamentStore } from "@/app/_store/store";
+import { ChooseFighterElementButton } from "./ChooseFighterElementButton";
+import { Button } from "../Button";
 import { LoadingPopup } from "../LoadingPopup";
 import { IFighter } from "@/app/_types/types";
-import { ChooseFighterElementButton } from "./ChooseFighterElementButton";
-import clsx from "clsx";
-import { useEffect } from "react";
+import axios from "@/app/_utils/axios/axiosInstance";
+import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 
 interface Props {
   fightersCount: number;
