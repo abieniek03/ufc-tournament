@@ -12,7 +12,6 @@ import {
   TournamentSchema,
 } from "@/app/_utils/validation/tournament.schema";
 
-import { Button } from "@/app/_components/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "@/app/_utils/axios/axiosInstance";
 import { useEffect, useState } from "react";

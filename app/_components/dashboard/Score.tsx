@@ -1,5 +1,6 @@
 import { fetchData } from "@/app/_utils/fetch/fetchData";
 import { IScore } from "@/app/_types/types";
+import { RankingLabel } from "./RankingLabel";
 
 interface Props {
   tournamentId: string;
@@ -62,16 +63,14 @@ export async function Score({ tournamentId }: Readonly<Props>) {
         </thead>
         <tbody>
           {score.data.map((el: IScore, index: number) => (
-            <tr
-              className="even:bg-hover h-10 border-b border-primary-500/25"
-              key={index}
-            >
+            <tr className="h-10 border-b border-primary-500/25" key={index}>
               <td className="w-10 text-center font-bold">{index + 1}</td>
-              <td scope="row" className="pl-4">
-                {el.fighter.firstName}{" "}
-                <span className="font-bold uppercase">
+              <td scope="row" className="inline-flex h-10 items-center pl-4 ">
+                <span className="mr-1">{el.fighter.firstName} </span>
+                <span className="mr-2 font-bold uppercase">
                   {el.fighter.lastName}
                 </span>
+                <RankingLabel position={el.ranking} />
               </td>
               <td className="w-16 text-center lg:w-20">{el.fights}</td>
               <td className="hidden w-16 text-center md:table-cell lg:w-20">

@@ -5,6 +5,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import { useCreateTournamentStore } from "@/app/_store/store";
 import { IFighter } from "@/app/_types/types";
+import { RankingLabel } from "./RankingLabel";
 
 interface Props {
   fighterData: IFighter;
@@ -46,14 +47,7 @@ export function ChooseFighterElementButton({
                 {fighterData.lastName}
               </span>
             </div>
-            <span
-              className={clsx(
-                "flex h-5 w-5 items-center justify-center text-xs font-semibold text-black",
-                isChampion ? "bg-gold" : "bg-gray-300",
-              )}
-            >
-              {isChampion ? "C" : fighterData.ranking?.position || "NR"}
-            </span>
+            <RankingLabel position={fighterData.ranking?.position} />
           </div>
         </div>
         <span className="hidden font-bold md:inline">{`${fighterData.win}-${fighterData.lose}-${fighterData.draw} ${fighterData.noContest ? `, ${fighterData.noContest}NC` : ""}`}</span>

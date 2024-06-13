@@ -13,13 +13,15 @@ import { IChildren, ButtonStyleType } from "../_types/types";
 
 interface Props extends IChildren {
   triggerButtonStyle: ButtonStyleType;
-  title: string;
+  trigger: string | JSX.Element;
+  title?: string;
 }
 
 export function Modal({
-  title,
   triggerButtonStyle,
+  trigger,
   children,
+  title,
 }: Readonly<Props>) {
   let [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -36,7 +38,7 @@ export function Modal({
   return (
     <>
       <Button styleType={triggerButtonStyle || "primary"} onClick={open}>
-        {title}
+        {trigger}
       </Button>
 
       <Transition appear show={isOpen}>
@@ -46,7 +48,7 @@ export function Modal({
           onClose={close}
           __demoMode
         >
-          <div className="fixed inset-0 z-10 w-screen overflow-y-auto bg-background/85">
+          <div className="fixed  inset-0 z-10 w-screen overflow-y-auto bg-background/85">
             <div className="flex min-h-full items-center justify-center p-4">
               <TransitionChild
                 enter="ease-out duration-300"
@@ -59,13 +61,15 @@ export function Modal({
                 <DialogPanel className="w-full max-w-xl rounded-xl bg-content/5 p-6 backdrop-blur-2xl">
                   <div className="mb-2 flex items-center justify-between font-semibold">
                     <DialogTitle as="h3" className="text-lg/7 text-content">
-                      {title}
+                      {triggerButtonStyle === "icon"
+                        ? title
+                        : triggerButtonStyle}
                     </DialogTitle>
                     <button onClick={close}>
                       <i className="ri-close-large-line" />
                     </button>
                   </div>
-                  <div>{children}</div>
+                  <div className="text-sm">{children}</div>
                 </DialogPanel>
               </TransitionChild>
             </div>

@@ -1,9 +1,9 @@
 import { type ReactNode } from "react";
-import { string } from "zod";
 
-export type ButtonStyleType = "primary" | "secondary" | "delete";
+export type ButtonStyleType = "primary" | "secondary" | "delete" | "icon";
 export type Step = "Data" | "Choose Fighters";
 export type Level = "ROUND_1" | "ROUND_2";
+export type RankingPosition = number | undefined | null;
 
 export interface IServerComponent {
   params: {
@@ -38,6 +38,7 @@ export interface IScore {
     firstName: string;
     lastName: string;
   };
+  ranking: RankingPosition;
   fights: number;
   win: number;
   lose: number;

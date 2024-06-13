@@ -30,7 +30,11 @@ export function DeleteTournament({ tournamentId }: Readonly<Props>) {
   });
 
   return (
-    <Modal triggerButtonStyle="delete" title="Delete tournament">
+    <Modal
+      triggerButtonStyle="icon"
+      trigger={<i className="ri-delete-bin-line text-xl text-error" />}
+      title="Delete tournament"
+    >
       <>
         <p className="mb-4">
           Are you sure you want to delete this tournament? All data will be
@@ -40,7 +44,7 @@ export function DeleteTournament({ tournamentId }: Readonly<Props>) {
           styleType="delete"
           wFull={true}
           onClick={() => deleteTournament.mutate()}
-          loading={deleteTournament.isPending}
+          loading={deleteTournament.isPending || deleteTournament.isSuccess}
         >
           Yes
         </Button>
