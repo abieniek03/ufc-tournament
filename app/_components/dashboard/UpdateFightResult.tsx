@@ -79,7 +79,11 @@ export function UpdateFightResult({ fightId, fighters }: Readonly<Props>) {
   };
 
   return (
-    <Modal triggerButtonStyle="primary" title="Update fight result" >
+    <Modal
+      triggerButtonStyle="primary"
+      trigger="Update result"
+      title="Update fight result"
+    >
       <>
         <FormProvider {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>

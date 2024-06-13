@@ -98,7 +98,7 @@ export function ChooseFighters({
                   fighterData={el}
                   onClick={() =>
                     createTournamentStore.updateFighters(
-                      `${el.id}#${el.ranking?.position || "NR"}`,
+                      `${el.id}#${el.ranking?.position !== undefined ? el.ranking.position : "NR"}`,
                     )
                   }
                 />

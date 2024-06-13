@@ -19,14 +19,13 @@ export function ChooseFighterElementButton({
   const selectedFighters = useCreateTournamentStore((state) => state.fighters);
 
   const isChampion = fighterData.ranking?.position === 0;
-  const id = `${fighterData.id}#${fighterData.ranking?.position || "NR"}`;
+  const id = `${fighterData.id}#${fighterData.ranking?.position || isChampion ? fighterData.ranking?.position : "NR"}`;
 
   return (
     <button
       type="button"
       className={clsx(
         "py-2focus:border-border-active w-full rounded-md border bg-input px-3 py-1.5 text-sm focus:outline-none",
-        // "block w-full p-2",
         selectedFighters.includes(id) ? "border-primary-500" : "border-border",
       )}
       data-id={id}
