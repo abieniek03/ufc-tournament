@@ -1,5 +1,6 @@
 "use client";
 
+import { type ComponentProps } from "react";
 import { useFormContext, useController } from "react-hook-form";
 import { stylesFormLabel, stylesFormField } from "@/app/_styles/styles";
 import { IOption } from "@/app/_types/types";
@@ -12,7 +13,13 @@ interface Props {
   form: any;
 }
 
-export function FormSelect({ id, label, options, form }: Readonly<Props>) {
+export function FormSelect({
+  id,
+  label,
+  options,
+  form,
+  ...rest
+}: Readonly<ComponentProps<"select"> & Props>) {
   const {
     control,
     formState: { errors },
@@ -38,6 +45,7 @@ export function FormSelect({ id, label, options, form }: Readonly<Props>) {
         onChange={field.onChange}
         onBlur={field.onBlur}
         {...form}
+        {...rest}
       >
         <option value="" disabled selected>
           Select {label.toLocaleLowerCase()}
@@ -49,11 +57,6 @@ export function FormSelect({ id, label, options, form }: Readonly<Props>) {
             </option>
           ))}
       </select>
-      {errors[id] && (
-        <p className="mt-1 text-xs text-error">
-          {errors[id]?.message?.toString()}
-        </p>
-      )}
     </div>
   );
 }

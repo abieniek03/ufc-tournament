@@ -21,11 +21,12 @@ export function Button({
   const buttonStyles = clsx(
     "rounded-md px-6 py-2 transition-all duration-200 outline-primary bg-primary text-xs border",
     styleType === "primary" &&
-      "bg-primary-500 text-primary-content border-transparent hover:bg-primary-600",
+      "bg-primary-500 text-primary-content border-transparent",
     styleType === "secondary" && "bg-primary/5 hover:bg-primary/10",
     styleType === "delete" && "bg-red-500 hover:bg-red-600 border-transparent",
-    loading ? "opacity-75" : "hover:opacity-95",
+    (loading || rest.disabled) && "opacity-25",
     wFull && "w-full",
+    !rest.disabled && styleType === "primary" && "hover:bg-primary-600",
   );
 
   if (path) {

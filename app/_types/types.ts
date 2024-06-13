@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { string } from "zod";
 
 export type ButtonStyleType = "primary" | "secondary" | "delete";
 export type Step = "Data" | "Choose Fighters";
@@ -76,4 +77,24 @@ export interface IFight {
 export interface IOption {
   id: string;
   label: string;
+}
+
+export interface IFighter {
+  id: string;
+  firstName: string;
+  lastName: string;
+  nickname: string;
+  birthDate: string;
+  sex: string;
+  nationality: string;
+  nationalityId: string;
+  city: string;
+  weightclassId: string;
+  win: number;
+  lose: number;
+  draw: number;
+  noContest: number;
+  ranking: {
+    position: number | undefined;
+  };
 }
