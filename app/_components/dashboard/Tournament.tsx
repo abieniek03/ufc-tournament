@@ -17,11 +17,12 @@ export async function Tournament({ data }: Readonly<Props>) {
     `/weightclass/${data.weightclassId}`,
   );
 
-  const finalFight: { data: IFight } = await fetchData(
+  const finalFight: { data: IFight[] } = await fetchData(
     `/fights/${data.id}?level=FINAL`,
   );
 
-  const winnerId = finalFight.data?.winner;
+  const winnerId = finalFight.data?.[0]?.winner ?? null;
+  console.log(winnerId);
 
   const winnerData: { data: IFighter } =
     winnerId && (await fetchData(`/fighters/${winnerId}`));

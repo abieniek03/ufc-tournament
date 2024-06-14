@@ -2,7 +2,12 @@ import { type ReactNode } from "react";
 
 export type ButtonStyleType = "primary" | "secondary" | "delete" | "icon";
 export type Step = "Data" | "Choose Fighters";
-export type Level = "ROUND_1" | "ROUND_2";
+export type Level =
+  | "ROUND_1"
+  | "ROUND_2"
+  | "QUARTERFINAL"
+  | "SEMIFINAL"
+  | "FINAL";
 export type RankingPosition = number | undefined | null;
 
 export interface IServerComponent {

@@ -16,7 +16,7 @@ export default async function TournamentGroupPage({
     <>
       <header className="mb-8 flex items-center justify-between">
         <div>
-          <Link href="/tournaments" className="text-primary-500 ">
+          <Link href="/tournaments" className="text-primary-500">
             <i className="ri-arrow-left-line font-bold" />
             <span className="ml-1 text-sm uppercase">Go back</span>
           </Link>
@@ -29,7 +29,6 @@ export default async function TournamentGroupPage({
       </header>
       <Score tournamentId={params.id} />
       <GroupStageFights tournamentId={params.id} level="ROUND_1" />
-
       <GroupStageFights tournamentId={params.id} level="ROUND_2" />
     </>
   );
