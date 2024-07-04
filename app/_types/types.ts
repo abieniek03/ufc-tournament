@@ -56,6 +56,7 @@ export interface IScore {
 
 export interface IFight {
   id: string;
+  level: string;
   redFighterId: string;
   blueFighterId: string;
   redFighter: {

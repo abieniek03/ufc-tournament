@@ -80,6 +80,7 @@ export function FightLabel({ data }: Readonly<Props>) {
           <div className="flex justify-center">
             <UpdateFightResult
               fightId={data.id}
+              fightLevel={data.level}
               fighters={[
                 {
                   id: data.redFighterId,

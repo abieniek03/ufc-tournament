@@ -8,7 +8,10 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import Providers from "./_hoc/Providers";
 
-const font = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
+const font = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: {

@@ -22,7 +22,6 @@ export async function Tournament({ data }: Readonly<Props>) {
   );
 
   const winnerId = finalFight.data?.[0]?.winner ?? null;
-  console.log(winnerId);
 
   const winnerData: { data: IFighter } =
     winnerId && (await fetchData(`/fighters/${winnerId}`));
@@ -30,7 +29,7 @@ export async function Tournament({ data }: Readonly<Props>) {
   return (
     <Link
       href={`/tournaments/${data.id}`}
-      className="rounded-md border border-content/10 bg-gradient-to-t from-primary-100/10 to-transparent px-4 text-center transition-all duration-500 hover:border-primary-200/50 hover:from-transparent hover:to-primary-100/10 lg:max-w-[240px]"
+      className="flex flex-col justify-between rounded-md border border-content/10 bg-gradient-to-t from-primary-100/10 to-transparent px-4 text-center transition-all duration-500 hover:border-primary-200/50 hover:from-transparent hover:to-primary-100/10 lg:max-w-[240px]"
     >
       <div className="font-black uppercase opacity-25">
         <p className="-mb-8 -mt-4 text-[128px]">{weightclass.data.limit}</p>
@@ -48,7 +47,7 @@ export async function Tournament({ data }: Readonly<Props>) {
             </p>
           </>
         ) : (
-          <p className="text-sm text-primary-500">In progress</p>
+          <p className="mt-[18px] text-sm text-primary-500">In progress</p>
         )}
       </div>
       <p className="mb-2.5 border-t pt-2.5 text-xs uppercase opacity-50">

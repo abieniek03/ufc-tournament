@@ -17,10 +17,15 @@ import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 
 interface Props {
   fightId: string;
+  fightLevel: string;
   fighters: IOption[];
 }
 
-export function UpdateFightResult({ fightId, fighters }: Readonly<Props>) {
+export function UpdateFightResult({
+  fightId,
+  fightLevel,
+  fighters,
+}: Readonly<Props>) {
   const token = getAuthToken();
 
   const methods = [
@@ -74,7 +79,6 @@ export function UpdateFightResult({ fightId, fighters }: Readonly<Props>) {
   });
 
   const onSubmit: SubmitHandler<Result> = (data: Result) => {
-    console.log(data);
     updateFightResult.mutate(data);
   };
 
@@ -93,7 +97,13 @@ export function UpdateFightResult({ fightId, fighters }: Readonly<Props>) {
               options={fighters}
               form={form.register("winner")}
             />
-            <FormInput type="number" id="round" label="Round" />
+            <FormInput
+              type="number"
+              id="round"
+              label="Round"
+              min={1}
+              max={fightLevel === "FINAL" ? 5 : 3}
+            />
             <FormSelect
               id="method"
               label="Method"
@@ -110,7 +120,9 @@ export function UpdateFightResult({ fightId, fighters }: Readonly<Props>) {
               <Button
                 styleType="primary"
                 wFull={true}
-                loading={updateFightResult.isPending}
+                loading={
+                  updateFightResult.isPending || updateFightResult.isSuccess
+                }
               >
                 Save result
               </Button>

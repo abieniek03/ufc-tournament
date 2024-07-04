@@ -61,9 +61,7 @@ export function Modal({
                 <DialogPanel className="w-full max-w-xl rounded-xl bg-content/5 p-6 backdrop-blur-2xl">
                   <div className="mb-2 flex items-center justify-between font-semibold">
                     <DialogTitle as="h3" className="text-lg/7 text-content">
-                      {triggerButtonStyle === "icon"
-                        ? title
-                        : triggerButtonStyle}
+                      {title}
                     </DialogTitle>
                     <button onClick={close}>
                       <i className="ri-close-large-line" />
