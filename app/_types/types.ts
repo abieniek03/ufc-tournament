@@ -9,7 +9,7 @@ export type Level =
   | "SEMIFINAL"
   | "FINAL";
 export type RankingPosition = number | undefined | null;
-
+export type Skeleton = "fight-label";
 export interface IServerComponent {
   params: {
     [key: string]: string;

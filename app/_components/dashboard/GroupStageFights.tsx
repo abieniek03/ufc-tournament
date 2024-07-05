@@ -8,6 +8,7 @@ import axios from "@/app/_utils/axios/axiosInstance";
 import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 import { DrawButton } from "./DrawButton";
 import { drawSecondRound } from "@/app/_utils/features/drawSecondRound";
+import { LoadingSkeleton } from "../LoadingSkeleton";
 
 interface Props {
   tournamentId: string;
@@ -20,7 +21,7 @@ export function GroupStageFights({ tournamentId, level }: Readonly<Props>) {
   const token = getAuthToken();
 
   const fights = useQuery({
-    queryKey: ["levelFights", level],
+    queryKey: ["levelFights", level, tournamentId],
     queryFn: async () => {
       try {
         const response = await axios.get(
@@ -51,6 +52,16 @@ export function GroupStageFights({ tournamentId, level }: Readonly<Props>) {
 
     fetchCan2ndDraw();
   }, [tournamentId]);
+
+  if (fights.isPending) {
+    return (
+      <div className="flex flex-col gap-4">
+        {Array.from({ length: 4 }, (_, index) => (
+          <LoadingSkeleton key={index} variant="fight-label" />
+        ))}
+      </div>
+    );
+  }
 
   return fights.data ? (
     <section>
