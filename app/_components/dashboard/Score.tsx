@@ -1,4 +1,4 @@
-import { fetchData } from "@/app/_utils/fetch/fetchData";
+import { serverFetchData } from "@/app/_utils/fetch/server";
 import { IFight, IScore } from "@/app/_types/types";
 import { RankingLabel } from "./RankingLabel";
 import clsx from "clsx";
@@ -8,12 +8,16 @@ interface Props {
 }
 
 export async function Score({ tournamentId }: Readonly<Props>) {
-  const score: { data: IScore[] } = await fetchData(`/score/${tournamentId}`);
+  const score: { data: IScore[] } = await serverFetchData(
+    `/score/${tournamentId}`,
+  );
 
   const topScore = score.data.slice(0, score.data.length / 2);
   const bottomScore = score.data.slice(score.data.length / 2);
 
-  const fights: { data: IFight[] } = await fetchData(`/fights/${tournamentId}`);
+  const fights: { data: IFight[] } = await serverFetchData(
+    `/fights/${tournamentId}`,
+  );
 
   let allWinners = true;
   for (const fight of fights.data) {

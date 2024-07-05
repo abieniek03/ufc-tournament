@@ -2,12 +2,12 @@ import Link from "next/link";
 import { Button } from "@/app/_components/Button";
 import { DashboardPageTitle } from "@/app/_components/dashboard/DashboardPageTitle";
 import { Tournament } from "@/app/_components/dashboard/Tournament";
-import { fetchData } from "@/app/_utils/fetch/fetchData";
+import { serverFetchData } from "@/app/_utils/fetch/server";
 import { ITournament } from "@/app/_types/types";
 
 export default async function TournamentsPage() {
   const userTournaments: { data: ITournament[] } =
-    await fetchData("/tournaments");
+    await serverFetchData("/tournaments");
 
   return (
     <>

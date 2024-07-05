@@ -104,3 +104,11 @@ export interface IFighter {
     position: number | undefined;
   };
 }
+
+export interface IBracket {
+  id: string;
+  tournamentId: string;
+  fightId: string;
+  level: string;
+  position: number;
+}

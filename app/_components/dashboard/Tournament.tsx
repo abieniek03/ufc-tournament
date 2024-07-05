@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fetchData } from "@/app/_utils/fetch/fetchData";
+import { serverFetchData } from "@/app/_utils/fetch/server";
 import { formatDate } from "../../_utils/helpers/formatDate";
 import {
   IFight,
@@ -13,18 +13,18 @@ export interface Props {
 }
 
 export async function Tournament({ data }: Readonly<Props>) {
-  const weightclass: { data: IWeightclass } = await fetchData(
+  const weightclass: { data: IWeightclass } = await serverFetchData(
     `/weightclass/${data.weightclassId}`,
   );
 
-  const finalFight: { data: IFight[] } = await fetchData(
+  const finalFight: { data: IFight[] } = await serverFetchData(
     `/fights/${data.id}?level=FINAL`,
   );
 
   const winnerId = finalFight.data?.[0]?.winner ?? null;
 
   const winnerData: { data: IFighter } =
-    winnerId && (await fetchData(`/fighters/${winnerId}`));
+    winnerId && (await serverFetchData(`/fighters/${winnerId}`));
 
   return (
     <Link

@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { FightLabel } from "./FightLabel";
 import { IFight, Level } from "@/app/_types/types";
-import axios from "@/app/_utils/axios/axiosInstance";
 import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 import { DrawButton } from "./DrawButton";
 import { drawSecondRound } from "@/app/_utils/features/drawSecondRound";
 import { LoadingSkeleton } from "../LoadingSkeleton";
+import { clientFetchData } from "@/app/_utils/fetch/client";
 
 interface Props {
   tournamentId: string;
@@ -22,22 +22,8 @@ export function GroupStageFights({ tournamentId, level }: Readonly<Props>) {
 
   const fights = useQuery({
     queryKey: ["levelFights", level, tournamentId],
-    queryFn: async () => {
-      try {
-        const response = await axios.get(
-          `/fights/${tournamentId}?level=${level}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-
-        return response.data;
-      } catch (error: any) {
-        console.error(error);
-      }
-    },
+    queryFn: async () =>
+      await clientFetchData(`/fights/${tournamentId}?level=${level}`, token),
   });
 
   useEffect(() => {
@@ -66,7 +52,7 @@ export function GroupStageFights({ tournamentId, level }: Readonly<Props>) {
   return fights.data ? (
     <section>
       <div className="mb-24">
-        <h2 className="text-center text-xl font-bold uppercase lg:text-2xl">
+        <h2 className="text-center text-xl font-bold uppercase text-primary-500 lg:text-2xl">
           {level.replace("_", " ")}
         </h2>
         <div className="my-16 flex flex-col gap-4">
