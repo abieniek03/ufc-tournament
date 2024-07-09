@@ -5,6 +5,7 @@ import { GroupStageFights } from "@/app/_components/dashboard/GroupStageFights";
 import { IBracket, IServerComponent, ITournament } from "@/app/_types/types";
 import { serverFetchData } from "@/app/_utils/fetch/server";
 import { BracketStageFights } from "@/app/_components/dashboard/BracketStageFights";
+import { CreateBracket } from "@/app/_components/dashboard/CreateBracket";
 
 export default async function TournamentGroupPage({
   params,
@@ -35,7 +36,14 @@ export default async function TournamentGroupPage({
       <Score tournamentId={params.id} />
       <GroupStageFights tournamentId={params.id} level="ROUND_1" />
       <GroupStageFights tournamentId={params.id} level="ROUND_2" />
-      {!bracket.data.length && <p>losuj</p>}
+      {!bracket.data.length && (
+        <div className="text-center">
+          <p className="mb-4 text-xl font-semibold">
+            The tournament will go to Knockout Stage
+          </p>
+          <CreateBracket tournamentId={params.id} />
+        </div>
+      )}
       <BracketStageFights tournamentId={params.id} />
     </>
   );
