@@ -5,7 +5,6 @@ import { LevelFights } from "@/app/_components/dashboard/LevelFights";
 import { IBracket, IServerComponent, ITournament } from "@/app/_types/types";
 import { serverFetchData } from "@/app/_utils/fetch/server";
 import { CreateBracket } from "@/app/_components/dashboard/CreateBracket";
-import { Bracket } from "@/app/_components/dashboard/Bracket";
 import { canDrawSecondRound } from "@/app/_utils/features/canDrawSecondRound";
 import { DrawButton } from "@/app/_components/dashboard/DrawButton";
 import { canCreateBracket } from "@/app/_utils/features/canCreateBracket";
@@ -18,7 +17,6 @@ export default async function TournamentGroupPage({
   );
 
   const permissionCanDrawSecondRound = await canDrawSecondRound(params.id);
-
   const permissionCanCreateBracket = await canCreateBracket(params.id);
 
   const bracket: { data: IBracket[] } = await serverFetchData(
@@ -53,7 +51,6 @@ export default async function TournamentGroupPage({
       )}
       {bracket.data.length ? (
         <>
-          <Bracket data={bracket.data} />
           <LevelFights tournamentId={params.id} level="QUARTERFINAL" />
           <LevelFights tournamentId={params.id} level="SEMIFINAL" />
           <LevelFights tournamentId={params.id} level="FINAL" />
