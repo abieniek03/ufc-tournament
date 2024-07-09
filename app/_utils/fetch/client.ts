@@ -1,9 +1,11 @@
-import axios from "@/app/_utils/axios/axiosInstance";
+"use client";
 
-export const clientFetchData = async (
-  endpoint: string,
-  token: string | null,
-) => {
+import axios from "@/app/_utils/axios/axiosInstance";
+import { getAuthToken } from "../helpers/getAuthToken";
+
+export const clientFetchData = async (endpoint: string) => {
+  const token = getAuthToken();
+
   try {
     const response = await axios.get(endpoint, {
       headers: {

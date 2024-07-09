@@ -109,6 +109,6 @@ export interface IBracket {
   id: string;
   tournamentId: string;
   fightId: string;
-  level: string;
+  level: Level;
   position: number;
 }
