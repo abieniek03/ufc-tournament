@@ -9,21 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0e0e11",
-        input: "#18181b",
+        background: "#06061b",
+        input: "#17172c",
         primary: {
-          "50": "#fbffe7",
-          "100": "#f3ffc1",
-          "200": "#ebff86",
-          "300": "#e8ff41",
-          "400": "#edff0d",
-          "500": "#faff00",
-          "600": "#fcff33",
-          "700": "#a68e02",
-          "800": "#896e0a",
-          "900": "#745a0f",
-          "950": "#443104",
-          content: "#000000",
+          "50": "#edf8ff",
+          "100": "#d6efff",
+          "200": "#b5e4ff",
+          "300": "#48bcff",
+          "400": "#067aff",
+          "500": "#0066ff",
+          "700": "#084ec5",
+          "900": "#0d469b",
+          "950": "#0e2b5d",
+          content: "#ffffff",
         },
         border: {
           DEFAULT: "#ffffff1c",

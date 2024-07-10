@@ -27,9 +27,10 @@ export default function RootLayout({ children }: Readonly<Props>) {
       appearance={{
         baseTheme: dark,
         variables: {
-          colorBackground: "#0e0e11",
-          colorInputBackground: "#18181b",
-          colorPrimary: "#faff00",
+          colorBackground: "#06061b",
+          colorInputBackground: "#17172c",
+          colorPrimary: "#0066ff",
+          colorTextOnPrimaryBackground: "#ffffff",
         },
       }}
     >
