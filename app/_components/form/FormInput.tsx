@@ -35,6 +35,7 @@ export function FormInput({
         className={clsx(
           stylesFormField,
           errors[id] && "border-error focus:outline-error",
+          rest.disabled && "opacity-35",
         )}
         value={field.value}
         onChange={field.onChange}
