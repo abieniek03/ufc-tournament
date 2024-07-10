@@ -37,7 +37,7 @@ export function FormInput({
           errors[id] && "border-error focus:outline-error",
           rest.disabled && "opacity-35",
         )}
-        value={field.value}
+        value={field.value || rest.defaultValue}
         onChange={field.onChange}
         {...rest}
       />

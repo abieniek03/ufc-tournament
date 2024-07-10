@@ -26,13 +26,14 @@ export async function LevelFights({ tournamentId, level }: Readonly<Props>) {
             <FightLabel data={el} key={index} />
           ))}
         </div>
-        {!fights.data[0].blueFighterId && (
-          <DrawButton
-            tournamentId={tournamentId}
-            level={level}
-            label="Draw opponents"
-          />
-        )}
+        {!fights.data[0].blueFighterId &&
+          fights.data[0].level === "ROUND_1" && (
+            <DrawButton
+              tournamentId={tournamentId}
+              level={level}
+              label="Draw opponents"
+            />
+          )}
       </div>
     </section>
   );

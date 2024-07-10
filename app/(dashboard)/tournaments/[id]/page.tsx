@@ -32,9 +32,9 @@ export default async function TournamentGroupPage({
     <>
       <header className="mb-8 flex items-center justify-between">
         <div>
-          <Link href="/tournaments" className="text-primary-500">
+          <Link href="/tournaments" className="py-2 text-primary-500">
             <i className="ri-arrow-left-line font-bold" />
-            <span className="ml-1 text-sm uppercase">Go back</span>
+            <span className="ml-1 text-sm font-semibold">Go back</span>
           </Link>
           <h1 className="uppercase">
             {tournament.data.weightclass.name} |{" "}

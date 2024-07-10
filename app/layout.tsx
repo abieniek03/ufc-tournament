@@ -28,7 +28,7 @@ export default function RootLayout({ children }: Readonly<Props>) {
         baseTheme: dark,
         variables: {
           colorBackground: "#06061b",
-          colorInputBackground: "#17172c",
+          colorInputBackground: "#0b0b1d",
           colorPrimary: "#0066ff",
           colorTextOnPrimaryBackground: "#ffffff",
         },

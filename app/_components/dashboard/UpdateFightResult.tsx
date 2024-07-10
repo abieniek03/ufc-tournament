@@ -15,7 +15,7 @@ import {
 import { FormInput } from "../form/FormInput";
 import { FormSelect } from "../form/FormSelect";
 import { Button } from "../Button";
-import { IOption } from "@/app/_types/types";
+import { IOption, Level } from "@/app/_types/types";
 import { useMutation } from "@tanstack/react-query";
 import axios from "@/app/_utils/axios/axiosInstance";
 import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
@@ -23,7 +23,7 @@ import { useEffect } from "react";
 
 interface Props {
   fightId: string;
-  fightLevel: string;
+  fightLevel: Level;
   fighters: IOption[];
 }
 
@@ -93,14 +93,17 @@ export function UpdateFightResult({
     updateFightResult.mutate(data);
   };
 
-  const getMaxRound = (fightLevel: string) => {
+  const getMaxRound = (fightLevel: Level) => {
     return fightLevel === "FINAL" ? 5 : 3;
   };
 
   useEffect(() => {
-    methodValue && methodValue[1] === "D"
-      ? form.setValue("time", "5:00")
-      : form.setValue("time", "");
+    if (methodValue && methodValue[1] === "D") {
+      form.setValue("time", "5:00");
+      form.setValue("round", getMaxRound(fightLevel));
+    } else {
+      form.setValue("time", "");
+    }
   }, [methodValue]);
 
   return (
@@ -130,11 +133,6 @@ export function UpdateFightResult({
               label="Round"
               min={1}
               max={getMaxRound(fightLevel)}
-              defaultValue={
-                methodValue && methodValue[1] === "D"
-                  ? getMaxRound(fightLevel)
-                  : ""
-              }
               value={
                 (methodValue &&
                   methodValue[1] === "D" &&
