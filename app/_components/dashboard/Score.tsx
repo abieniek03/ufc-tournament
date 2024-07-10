@@ -30,7 +30,7 @@ export async function Score({ tournamentId }: Readonly<Props>) {
   return (
     <section className="mb-16 border-b border-content/5 pb-16">
       <table className="w-full bg-background text-left text-sm">
-        <thead className="h-10 bg-primary-500 text-xs uppercase text-primary-content">
+        <thead className="h-10 bg-primary-500/15 text-xs uppercase text-primary-500">
           <tr>
             <th scope="col" colSpan={2} className="w-16 pl-14 lg:w-20">
               Name

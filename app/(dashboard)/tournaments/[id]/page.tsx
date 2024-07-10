@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { DeleteTournament } from "@/app/_components/dashboard/DeleteTournament";
 import { Score } from "@/app/_components/dashboard/Score";
@@ -8,6 +9,10 @@ import { CreateBracket } from "@/app/_components/dashboard/CreateBracket";
 import { canDrawSecondRound } from "@/app/_utils/features/canDrawSecondRound";
 import { DrawButton } from "@/app/_components/dashboard/DrawButton";
 import { canCreateBracket } from "@/app/_utils/features/canCreateBracket";
+
+export const metadata: Metadata = {
+  title: "Tournament",
+};
 
 export default async function TournamentGroupPage({
   params,
