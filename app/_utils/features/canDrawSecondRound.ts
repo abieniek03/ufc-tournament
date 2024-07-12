@@ -7,11 +7,11 @@ export const canDrawSecondRound = async (
 ): Promise<boolean> => {
   try {
     const fightsFirstRound: { data: IFight[] } = await serverFetchData(
-      `/fights/${tournamentId}?level=ROUND_1`,
+      `/fights?tournament=${tournamentId}&level=ROUND_1`,
     );
 
     const fightsSecondRound: { data: IFight[] } = await serverFetchData(
-      `/fights/${tournamentId}?level=ROUND_2`,
+      `/fights?tournament=${tournamentId}&level=ROUND_2`,
     );
 
     if (fightsSecondRound.data) return false;

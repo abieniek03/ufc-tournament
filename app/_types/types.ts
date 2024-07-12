@@ -56,16 +56,18 @@ export interface IScore {
 
 export interface IFight {
   id: string;
-  level: string;
+  level: Level;
   redFighterId: string;
   blueFighterId: string;
   redFighter: {
     firstName: string;
     lastName: string;
+    nationalityId: string;
   };
   blueFighter: {
     firstName: string;
     lastName: string;
+    nationalityId: string;
   };
   redScore: {
     ranking: number;
@@ -80,6 +82,16 @@ export interface IFight {
   description: string | null;
 }
 
+export interface IBracketFight {
+  id: string;
+  tournamentId: string;
+  fightId: string;
+  level: Level;
+  position: number;
+  tournament: {
+    id: "20389588-b105-40a5-9751-8e584dafb127";
+  };
+}
 export interface IOption {
   id: string;
   label: string;

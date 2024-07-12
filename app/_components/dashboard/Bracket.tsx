@@ -1,17 +1,64 @@
+import { IBracket, IBracketFight } from "@/app/_types/types";
 import { BracketElement } from "./BracketElement";
+import clsx from "clsx";
 
 interface Props {
-  data: any;
+  data: IBracketFight[];
 }
 
 export function Bracket({ data }: Readonly<Props>) {
-  console.log(data);
+  const quarterfinals = data.filter(
+    (el: IBracketFight) => el.level === "QUARTERFINAL",
+  );
+
+  const semifinals = data.filter(
+    (el: IBracketFight) => el.level === "SEMIFINAL",
+  );
+  const final = data.filter((el: IBracketFight) => el.level === "FINAL");
+
   return (
-    <div>
-      <p>bracket</p>
-      {data.map((el: any, index: number) => (
-        <BracketElement key={index} fightId={el.fightId} />
-      ))}
+    <div
+      className={clsx(
+        "mb-36 hidden items-center md:flex lg:gap-20 lg:text-lg",
+        quarterfinals.length ? "justify-around" : "justify-center gap-20",
+      )}
+    >
+      {quarterfinals.length ? (
+        <div className="flex flex-col ">
+          <p className="mb-2 text-center font-bold uppercase text-primary-500">
+            QUARTERFINALS
+          </p>
+          <div className="flex flex-col gap-12">
+            {quarterfinals.map((el: IBracket, index: number) => (
+              <BracketElement key={index} fightId={el.fightId} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {semifinals.length && (
+        <div className="flex h-full flex-col">
+          <p className="mb-2 text-center font-bold uppercase text-primary-500">
+            SEMIFINALS
+          </p>
+          <div className="flex flex-col justify-around gap-40">
+            {semifinals.map((el: IBracket, index: number) => (
+              <BracketElement key={index} fightId={el.fightId} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {final && (
+        <div className="flex flex-col">
+          <p className="mb-2 text-center font-bold uppercase text-primary-500">
+            FINAL
+          </p>
+          <BracketElement fightId={final[0].fightId} />
+        </div>
+      )}
     </div>
   );
 }
