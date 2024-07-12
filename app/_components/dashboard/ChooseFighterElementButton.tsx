@@ -34,7 +34,7 @@ export function ChooseFighterElementButton({
       <div className="flex items-center justify-between">
         <div className="flex gap-4">
           <Image
-            src={`https://flagsapi.com/${fighterData.nationalityId}/flat/64.png`}
+            src={`https://flagsapi.com/${fighterData.nationalityId}/flat/64.png` }
             alt=""
             width={25}
             height={25}

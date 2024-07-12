@@ -16,7 +16,7 @@ export async function Score({ tournamentId }: Readonly<Props>) {
   const bottomScore = score.data.slice(score.data.length / 2);
 
   const fights: { data: IFight[] } = await serverFetchData(
-    `/fights/${tournamentId}`,
+    `/fights?tournament=${tournamentId}`,
   );
 
   let allWinners = true;
@@ -27,6 +27,7 @@ export async function Score({ tournamentId }: Readonly<Props>) {
   }
 
   const knockoutRound = allWinners && score.data.length <= fights.data.length;
+
   return (
     <section className="mb-16 border-b border-content/5 pb-16">
       <table className="w-full bg-background text-left text-sm">

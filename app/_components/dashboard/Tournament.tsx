@@ -18,7 +18,7 @@ export async function Tournament({ data }: Readonly<Props>) {
   );
 
   const finalFight: { data: IFight[] } = await serverFetchData(
-    `/fights/${data.id}?level=FINAL`,
+    `/fights?tournament=${data.id}&level=FINAL`,
   );
 
   const winnerId = finalFight.data?.[0]?.winner ?? null;

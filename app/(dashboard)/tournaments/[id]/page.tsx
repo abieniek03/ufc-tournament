@@ -9,6 +9,7 @@ import { CreateBracket } from "@/app/_components/dashboard/CreateBracket";
 import { canDrawSecondRound } from "@/app/_utils/features/canDrawSecondRound";
 import { DrawButton } from "@/app/_components/dashboard/DrawButton";
 import { canCreateBracket } from "@/app/_utils/features/canCreateBracket";
+import { Bracket } from "@/app/_components/dashboard/Bracket";
 
 export const metadata: Metadata = {
   title: "Tournament",
@@ -27,6 +28,8 @@ export default async function TournamentGroupPage({
   const bracket: { data: IBracket[] } = await serverFetchData(
     `/bracket/${params.id}`,
   );
+
+  console.log(bracket);
 
   return (
     <>
@@ -56,6 +59,7 @@ export default async function TournamentGroupPage({
       )}
       {bracket.data.length ? (
         <>
+          <Bracket data={bracket.data} />
           <LevelFights tournamentId={params.id} level="QUARTERFINAL" />
           <LevelFights tournamentId={params.id} level="SEMIFINAL" />
           <LevelFights tournamentId={params.id} level="FINAL" />
