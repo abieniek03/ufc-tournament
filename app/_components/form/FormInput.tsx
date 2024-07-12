@@ -2,7 +2,7 @@
 
 import { type ComponentProps } from "react";
 import { useFormContext, useController } from "react-hook-form";
-import { stylesFormField } from "@/app/_styles/styles";
+import { stylesFormLabel, stylesFormField } from "@/app/_styles/styles";
 import clsx from "clsx";
 
 interface Props {
@@ -27,7 +27,7 @@ export function FormInput({
 
   return (
     <div className="text-secondary mb-3 text-sm">
-      <label htmlFor={id} className="mb-1 block">
+      <label htmlFor={id} className={stylesFormLabel}>
         {label}
       </label>
       <input
@@ -35,13 +35,14 @@ export function FormInput({
         className={clsx(
           stylesFormField,
           errors[id] && "border-error focus:outline-error",
+          rest.disabled && "opacity-35",
         )}
-        value={field.value}
+        value={field.value || rest.defaultValue}
         onChange={field.onChange}
         {...rest}
       />
       {errors[id] && (
-        <p className="text-error mt-1 text-xs">
+        <p className="mt-1 text-xs text-error">
           {errors[id]?.message?.toString()}
         </p>
       )}

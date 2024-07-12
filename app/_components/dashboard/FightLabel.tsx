@@ -8,8 +8,8 @@ interface Props {
 
 export function WinnerLabel() {
   return (
-    <span className="mb-3 mt-1 bg-green-600 px-3 py-1 text-xs font-bold uppercase">
-      Winner
+    <span className="mb-3 mt-1 bg-primary-500 px-3 py-1 text-xs font-bold uppercase text-primary-content">
+      Win
     </span>
   );
 }
@@ -58,15 +58,29 @@ export function FightLabel({ data }: Readonly<Props>) {
               Draw
             </span>
           )}
-          <span className="border-t border-content/5 px-5 pt-2 text-center text-sm font-bold">
-            R{data.round} {data.time}, {data.method} ({data.description})
-          </span>
+          <div className="grid w-full grid-cols-3 gap-3 border-t border-primary-500 pt-4 text-center text-sm font-bold">
+            <div>
+              <p className="uppercase text-primary-500">Round</p>
+              <p>{data.round}</p>
+            </div>
+            <div>
+              <p className="uppercase text-primary-500">Time</p>
+              <p>{data.time}</p>
+            </div>
+            <div>
+              <p className="uppercase text-primary-500">Method</p>
+              <p>
+                {data.method} ({data.description})
+              </p>
+            </div>
+          </div>
         </div>
       ) : (
         data.blueFighterId && (
           <div className="flex justify-center">
             <UpdateFightResult
               fightId={data.id}
+              fightLevel={data.level}
               fighters={[
                 {
                   id: data.redFighterId,

@@ -1,7 +1,12 @@
 "use client";
 
 import { Modal } from "../Modal";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import {
+  FormProvider,
+  SubmitHandler,
+  useForm,
+  useWatch,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Result,
@@ -10,17 +15,23 @@ import {
 import { FormInput } from "../form/FormInput";
 import { FormSelect } from "../form/FormSelect";
 import { Button } from "../Button";
-import { IOption } from "@/app/_types/types";
+import { IOption, Level } from "@/app/_types/types";
 import { useMutation } from "@tanstack/react-query";
 import axios from "@/app/_utils/axios/axiosInstance";
 import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
+import { useEffect } from "react";
 
 interface Props {
   fightId: string;
+  fightLevel: Level;
   fighters: IOption[];
 }
 
-export function UpdateFightResult({ fightId, fighters }: Readonly<Props>) {
+export function UpdateFightResult({
+  fightId,
+  fightLevel,
+  fighters,
+}: Readonly<Props>) {
   const token = getAuthToken();
 
   const methods = [
@@ -56,6 +67,11 @@ export function UpdateFightResult({ fightId, fighters }: Readonly<Props>) {
     reValidateMode: "onChange",
   });
 
+  const methodValue = useWatch({
+    control: form.control,
+    name: "method",
+  });
+
   const updateFightResult = useMutation({
     mutationKey: ["updateFightResult", fightId],
     mutationFn: async (resultData: Result) => {
@@ -74,12 +90,28 @@ export function UpdateFightResult({ fightId, fighters }: Readonly<Props>) {
   });
 
   const onSubmit: SubmitHandler<Result> = (data: Result) => {
-    console.log(data);
     updateFightResult.mutate(data);
   };
 
+  const getMaxRound = (fightLevel: Level) => {
+    return fightLevel === "FINAL" ? 5 : 3;
+  };
+
+  useEffect(() => {
+    if (methodValue && methodValue[1] === "D") {
+      form.setValue("time", "5:00");
+      form.setValue("round", getMaxRound(fightLevel));
+    } else {
+      form.setValue("time", "");
+    }
+  }, [methodValue]);
+
   return (
-    <Modal triggerButtonStyle="primary" title="Update fight result" >
+    <Modal
+      triggerButtonStyle="primary"
+      trigger="Update result"
+      title="Update fight result"
+    >
       <>
         <FormProvider {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -89,24 +121,44 @@ export function UpdateFightResult({ fightId, fighters }: Readonly<Props>) {
               options={fighters}
               form={form.register("winner")}
             />
-            <FormInput type="number" id="round" label="Round" />
             <FormSelect
               id="method"
               label="Method"
               options={methods}
               form={form.register("method")}
             />
-            <FormInput id="time" label="Time" />
+            <FormInput
+              type="number"
+              id="round"
+              label="Round"
+              min={1}
+              max={getMaxRound(fightLevel)}
+              value={
+                (methodValue &&
+                  methodValue[1] === "D" &&
+                  getMaxRound(fightLevel)) ||
+                undefined
+              }
+              disabled={(methodValue && methodValue[1] === "D") || false}
+            />
+            <FormInput
+              id="time"
+              label="Time"
+              defaultValue={form.getValues("time")}
+              disabled={(methodValue && methodValue[1] === "D") || false}
+            />
             <FormInput
               id="description"
               label="Description"
-              placeholder="Points, finish details"
+              placeholder="Finish details / score cards (e.g. 2x29-28, 28-29)"
             />
             <div className="mt-8">
               <Button
                 styleType="primary"
                 wFull={true}
-                loading={updateFightResult.isPending}
+                loading={
+                  updateFightResult.isPending || updateFightResult.isSuccess
+                }
               >
                 Save result
               </Button>

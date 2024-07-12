@@ -1,67 +1,34 @@
 "use client";
 
-import { type ComponentProps } from "react";
-import clsx from "clsx";
-import { useCreateTournamentStore } from "@/app/_store/store";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import axios from "@/app/_utils/axios/axiosInstance";
-import { Button } from "../Button";
-import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 import { useRouter } from "next/navigation";
+import clsx from "clsx";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useCreateTournamentStore } from "@/app/_store/store";
+import { ChooseFighterElementButton } from "./ChooseFighterElementButton";
+import { Button } from "../Button";
 import { LoadingPopup } from "../LoadingPopup";
+import { IFighter } from "@/app/_types/types";
+import axios from "@/app/_utils/axios/axiosInstance";
+import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 
 interface Props {
-  id: string;
-  fullName: string;
-  ranking: number | undefined;
+  fightersCount: number;
+  weightclassId: string;
 }
-
-function FighterElement({
-  id,
-  fullName,
-  ranking,
-  ...rest
-}: Readonly<ComponentProps<"button"> & Props>) {
-  const isChampion = ranking === 0;
-  const selectedFighters = useCreateTournamentStore((state) => state.fighters);
-
-  return (
-    <button
-      className={clsx(
-        "block w-full p-2",
-        selectedFighters.includes(id)
-          ? "bg-content text-background"
-          : "bg-content/5",
-      )}
-      data-id={id}
-      {...rest}
-    >
-      <div className="flex gap-2">
-        <span
-          className={clsx(
-            "flex h-6 w-6 items-center justify-center text-xs font-semibold text-black",
-            isChampion ? "bg-gold" : "bg-gray-300",
-          )}
-        >
-          {isChampion ? "C" : ranking || "NR"}
-        </span>{" "}
-        <span>{fullName}</span>
-      </div>
-    </button>
-  );
-}
-
-export function ChooseFighters() {
+export function ChooseFighters({
+  fightersCount,
+  weightclassId,
+}: Readonly<Props>) {
   const router = useRouter();
   const createTournamentStore = useCreateTournamentStore();
   const token = getAuthToken();
 
   const fetchFighters = useQuery({
-    queryKey: ["fighters"],
+    queryKey: ["fighters", fightersCount, weightclassId],
     queryFn: async () => {
       try {
         const response = await axios.get(
-          `/fighters?weightclass=${createTournamentStore.weightclassId}`,
+          `/fighters?weightclass=${weightclassId}`,
         );
         return response.data.data;
       } catch (error: any) {
@@ -70,10 +37,17 @@ export function ChooseFighters() {
     },
   });
 
+  const selectedFighters = useCreateTournamentStore((state) =>
+    state.getSelectedFighters(),
+  );
+
   const createTourmanent = useMutation({
     mutationKey: ["createTournament"],
     mutationFn: async () => {
-      const data = createTournamentStore.getData();
+      const data = {
+        weightclassId: weightclassId,
+        fighters: selectedFighters,
+      };
       try {
         const response = await axios.post("/tournaments", data, {
           headers: {
@@ -88,40 +62,72 @@ export function ChooseFighters() {
     },
   });
 
+  const exceedLimit = selectedFighters.length > fightersCount;
+
   return (
     <div>
-      <p>Choose 8 or 16 fighters to the tournament.</p>
       <div className="my-4 grid gap-2">
-        {fetchFighters.isPending
-          ? Array.from({ length: 16 }, (_, index) => (
-              <div
-                key={index}
-                className="h-[40px] animate-pulse bg-content/10"
-              />
-            ))
-          : fetchFighters.data?.map((el: any, index: number) => (
-              <FighterElement
-                key={index}
-                id={`${el.id}#${el.ranking?.position || "NR"}`}
-                fullName={`${el.firstName} ${el.lastName}`}
-                ranking={el.ranking?.position}
-                onClick={() =>
-                  createTournamentStore.updateFighters(
-                    `${el.id}#${el.ranking?.position || "NR"}`,
-                  )
-                }
-              />
-            ))}
+        {fetchFighters.isPending &&
+          Array.from({ length: 16 }, (_, index) => (
+            <div key={index} className="h-[40px] animate-pulse bg-content/10" />
+          ))}
+
+        {fetchFighters.data?.length >= fightersCount ? (
+          <>
+            <div
+              className={clsx(
+                "mb-1 flex text-sm font-bold uppercase",
+                exceedLimit ? "justify-between" : "justify-end",
+              )}
+            >
+              {exceedLimit && (
+                <p className=" text-error">You chose too many fighters</p>
+              )}
+              <p>
+                Selected{" "}
+                <span className={clsx(exceedLimit && "text-error")}>
+                  {selectedFighters.length}
+                </span>
+                /{fightersCount}
+              </p>
+            </div>
+            <div className="mb-4 flex flex-col gap-2.5">
+              {fetchFighters.data.map((el: IFighter, index: number) => (
+                <ChooseFighterElementButton
+                  key={index}
+                  fighterData={el}
+                  onClick={() =>
+                    createTournamentStore.updateFighters(
+                      `${el.id}#${el.ranking?.position !== undefined ? el.ranking.position : "NR"}`,
+                    )
+                  }
+                />
+              ))}
+            </div>
+            <Button
+              type="button"
+              styleType="primary"
+              disabled={selectedFighters.length !== fightersCount}
+              onClick={() => {
+                createTourmanent.mutate();
+              }}
+            >
+              Create tournament
+            </Button>
+          </>
+        ) : (
+          <div className="mt-4 text-center md:mt-8 lg:mt-16">
+            <p className="mb-2 text-2xl font-bold text-primary-500 md:text-3xl lg:text-4xl">
+              Try again later
+            </p>
+            <p>You cannot create a tournament in this weightclass yet.</p>
+          </div>
+        )}
       </div>
-      <Button
-        styleType="primary"
-        onClick={() => {
-          createTourmanent.mutate();
-        }}
-      >
-        Create tournament
-      </Button>
-      {createTourmanent.isPending && <LoadingPopup />}
+
+      {(createTourmanent.isPending || createTourmanent.isSuccess) && (
+        <LoadingPopup />
+      )}
     </div>
   );
 }

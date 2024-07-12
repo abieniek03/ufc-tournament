@@ -4,29 +4,21 @@ import { useMutation } from "@tanstack/react-query";
 import { Button } from "../Button";
 
 import axios from "@/app/_utils/axios/axiosInstance";
-
 import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
-import { Level } from "@/app/_types/types";
 
 interface Props {
   tournamentId: string;
-  level: Level;
-  label: string;
 }
 
-export async function DrawButton({
-  tournamentId,
-  level,
-  label,
-}: Readonly<Props>) {
+export function CreateBracket({ tournamentId }: Readonly<Props>) {
   const token = getAuthToken();
 
   const drawOponents = useMutation({
-    mutationKey: ["draw", tournamentId, level],
+    mutationKey: ["bracket", tournamentId],
     mutationFn: async () => {
       try {
         await axios.post(
-          `/draw/${tournamentId}/${level}`,
+          `/bracket/${tournamentId}/`,
           {},
           {
             headers: {
@@ -42,10 +34,12 @@ export async function DrawButton({
   });
 
   return (
-    <div className="mb-16 flex items-center justify-center">
-      <Button styleType="primary" onClick={() => drawOponents.mutate()}>
-        {label}
-      </Button>
-    </div>
+    <>
+      <div className="flex items-center justify-center">
+        <Button styleType="primary" onClick={() => drawOponents.mutate()}>
+          Create bracket
+        </Button>
+      </div>
+    </>
   );
 }

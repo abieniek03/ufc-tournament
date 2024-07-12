@@ -1,13 +1,15 @@
-import { cookies } from "next/headers";
-import axios from "@/app/_utils/axios/axiosInstance";
+"use client";
 
-export const fetchData = async (endpoint: string) => {
-  const sessionToken = cookies().get("__session")?.value;
+import axios from "@/app/_utils/axios/axiosInstance";
+import { getAuthToken } from "../helpers/getAuthToken";
+
+export const clientFetchData = async (endpoint: string) => {
+  const token = getAuthToken();
 
   try {
     const response = await axios.get(endpoint, {
       headers: {
-        Authorization: `Bearer ${sessionToken}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return response.data;

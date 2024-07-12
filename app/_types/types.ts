@@ -1,9 +1,15 @@
 import { type ReactNode } from "react";
 
-export type ButtonStyleType = "primary" | "secondary" | "delete";
+export type ButtonStyleType = "primary" | "secondary" | "delete" | "icon";
 export type Step = "Data" | "Choose Fighters";
-export type Level = "ROUND_1" | "ROUND_2";
-
+export type Level =
+  | "ROUND_1"
+  | "ROUND_2"
+  | "QUARTERFINAL"
+  | "SEMIFINAL"
+  | "FINAL";
+export type RankingPosition = number | undefined | null;
+export type Skeleton = "fight-label";
 export interface IServerComponent {
   params: {
     [key: string]: string;
@@ -22,7 +28,6 @@ export interface IWeightclass {
 
 export interface ITournament {
   id: string;
-  name: string;
   weightclassId: string;
   fighters: number;
   createdAt: string;
@@ -38,6 +43,7 @@ export interface IScore {
     firstName: string;
     lastName: string;
   };
+  ranking: RankingPosition;
   fights: number;
   win: number;
   lose: number;
@@ -50,6 +56,7 @@ export interface IScore {
 
 export interface IFight {
   id: string;
+  level: Level;
   redFighterId: string;
   blueFighterId: string;
   redFighter: {
@@ -76,4 +83,32 @@ export interface IFight {
 export interface IOption {
   id: string;
   label: string;
+}
+
+export interface IFighter {
+  id: string;
+  firstName: string;
+  lastName: string;
+  nickname: string;
+  birthDate: string;
+  sex: string;
+  nationality: string;
+  nationalityId: string;
+  city: string;
+  weightclassId: string;
+  win: number;
+  lose: number;
+  draw: number;
+  noContest: number;
+  ranking: {
+    position: number | undefined;
+  };
+}
+
+export interface IBracket {
+  id: string;
+  tournamentId: string;
+  fightId: string;
+  level: Level;
+  position: number;
 }
