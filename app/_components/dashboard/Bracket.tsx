@@ -36,27 +36,23 @@ export function Bracket({ data }: Readonly<Props>) {
         ""
       )}
 
-      {semifinals.length && (
-        <div className="flex h-full flex-col">
-          <p className="mb-2 text-center font-bold uppercase text-primary-500">
-            SEMIFINALS
-          </p>
-          <div className="flex flex-col justify-around gap-40">
-            {semifinals.map((el: IBracket, index: number) => (
-              <BracketElement key={index} fightId={el.fightId} />
-            ))}
-          </div>
+      <div className="flex h-full flex-col">
+        <p className="mb-2 text-center font-bold uppercase text-primary-500">
+          SEMIFINALS
+        </p>
+        <div className="flex flex-col justify-around gap-40">
+          {semifinals.map((el: IBracket, index: number) => (
+            <BracketElement key={index} fightId={el.fightId} />
+          ))}
         </div>
-      )}
+      </div>
 
-      {final && (
-        <div className="flex flex-col">
-          <p className="mb-2 text-center font-bold uppercase text-primary-500">
-            FINAL
-          </p>
-          <BracketElement fightId={final[0].fightId} />
-        </div>
-      )}
+      <div className="flex flex-col">
+        <p className="mb-2 text-center font-bold uppercase text-primary-500">
+          FINAL
+        </p>
+        <BracketElement fightId={final[0]?.fightId || undefined} />
+      </div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { canDrawSecondRound } from "@/app/_utils/features/canDrawSecondRound";
 import { DrawButton } from "@/app/_components/dashboard/DrawButton";
 import { canCreateBracket } from "@/app/_utils/features/canCreateBracket";
 import { Bracket } from "@/app/_components/dashboard/Bracket";
+import { Winner } from "@/app/_components/dashboard/Winner";
 
 export const metadata: Metadata = {
   title: "Tournament",
@@ -28,6 +29,15 @@ export default async function TournamentGroupPage({
   const bracket: { data: IBracket[] } = await serverFetchData(
     `/bracket/${params.id}`,
   );
+
+  const existFinal: IBracket[] = bracket.data.filter(
+    (el: IBracket) => el.level === "FINAL",
+  );
+
+  let finalFight;
+  if (existFinal.length) {
+    finalFight = await serverFetchData(`/fights/${existFinal[0].fightId}`);
+  }
 
   return (
     <>
@@ -67,13 +77,17 @@ export default async function TournamentGroupPage({
       ) : (
         permissionCanCreateBracket && (
           <div className="mb-16 text-center">
-            <p className="mb-4 text-xl font-semibold">
+            <p className="mb-4 text-xl font-semibold md:mb-6 md:text-2xl lg:text-3xl">
               The tournament will go to{" "}
               <span className="uppercase">knockout stage</span>
             </p>
             <CreateBracket tournamentId={params.id} />
           </div>
         )
+      )}
+
+      {finalFight?.data?.winner && (
+        <Winner id={finalFight.data.winner} tournamentId={params.id} />
       )}
     </>
   );

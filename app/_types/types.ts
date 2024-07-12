@@ -39,6 +39,7 @@ export interface ITournament {
 }
 
 export interface IScore {
+  fighterId: string;
   fighter: {
     firstName: string;
     lastName: string;
@@ -52,6 +53,7 @@ export interface IScore {
   secondRoundFinish: number;
   thirdRoundFinish: number;
   points: number;
+  createdAt: string;
 }
 
 export interface IFight {

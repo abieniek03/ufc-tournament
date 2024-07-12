@@ -5,16 +5,16 @@ import { serverFetchData } from "@/app/_utils/fetch/server";
 import { IFight } from "@/app/_types/types";
 
 interface PropsBracketElementFighterLabel {
-  fighter: {
+  fighter?: {
+    nationalityId: string;
     id: string;
     firstName: string;
     lastName: string;
-    nationalityId: string;
   };
-  winner: boolean | undefined;
+  winner?: boolean;
 }
 interface Props {
-  fightId: string;
+  fightId: string | undefined;
 }
 
 function BracketElementFighterLabel({
@@ -39,8 +39,8 @@ function BracketElementFighterLabel({
         height={25}
       />
       <p className="font-semibold uppercase">
-        {fighter.firstName
-          ? `${fighter.firstName[0]}. ${fighter.lastName}`
+        {fighter?.firstName
+          ? `${fighter.firstName[0]}. ${fighter?.lastName}`
           : "TBD"}
       </p>
     </div>
@@ -53,22 +53,32 @@ export async function BracketElement({ fightId }: Readonly<Props>) {
   return (
     <div className="relative flex flex-col border border-content/5  bg-primary-500/5 p-2">
       <BracketElementFighterLabel
-        fighter={{ id: fight.data.redFighterId, ...fight.data.redFighter }}
+        fighter={
+          fight.data && {
+            id: fight.data.redFighterId,
+            ...fight.data.redFighter,
+          }
+        }
         winner={
-          fight.data.winner
+          fight?.data?.winner
             ? fight.data.winner === fight.data.redFighterId
             : undefined
         }
       />
       <BracketElementFighterLabel
-        fighter={{ id: fight.data.blueFighterId, ...fight.data.blueFighter }}
+        fighter={
+          fight.data && {
+            id: fight.data.blueFighterId,
+            ...fight.data.blueFighter,
+          }
+        }
         winner={
-          fight.data.winner
+          fight?.data?.winner
             ? fight.data.winner === fight.data.blueFighterId
             : undefined
         }
       />
-      {fight.data.winner && (
+      {fight.data?.winner && (
         <div className="absolute -right-4 top-1/2 flex -translate-y-1/2 flex-col text-center text-xs lg:text-sm">
           <span className="bg-primary-500 px-1.5">{fight.data.method}</span>
           <span className="bg-primary-content px-1.5 text-primary-500">
