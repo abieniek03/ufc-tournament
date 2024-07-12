@@ -29,6 +29,8 @@ export default async function TournamentGroupPage({
     `/bracket/${params.id}`,
   );
 
+  console.log(bracket);
+
   return (
     <>
       <header className="mb-8 flex items-center justify-between">

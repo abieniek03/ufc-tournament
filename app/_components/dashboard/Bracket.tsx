@@ -1,20 +1,18 @@
-import { IBracket, IBracketFight } from "@/app/_types/types";
+import { IBracket } from "@/app/_types/types";
 import { BracketElement } from "./BracketElement";
 import clsx from "clsx";
 
 interface Props {
-  data: IBracketFight[];
+  data: IBracket[];
 }
 
 export function Bracket({ data }: Readonly<Props>) {
   const quarterfinals = data.filter(
-    (el: IBracketFight) => el.level === "QUARTERFINAL",
+    (el: IBracket) => el.level === "QUARTERFINAL",
   );
 
-  const semifinals = data.filter(
-    (el: IBracketFight) => el.level === "SEMIFINAL",
-  );
-  const final = data.filter((el: IBracketFight) => el.level === "FINAL");
+  const semifinals = data.filter((el: IBracket) => el.level === "SEMIFINAL");
+  const final = data.filter((el: IBracket) => el.level === "FINAL");
 
   return (
     <div
