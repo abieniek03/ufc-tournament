@@ -7,11 +7,11 @@ export const canCreateBracket = async (
 ): Promise<boolean | any> => {
   try {
     const fightsFirstRound: { data: IFight[] } = await serverFetchData(
-      `/fights/${tournamentId}?level=ROUND_1`,
+      `/fights?tournament=${tournamentId}&level=ROUND_1`,
     );
 
     const fightsSecondRound: { data: IFight[] } = await serverFetchData(
-      `/fights/${tournamentId}?level=ROUND_2`,
+      `/fights?tournament=${tournamentId}&level=ROUND_2`,
     );
 
     const allGroupStageFights = [

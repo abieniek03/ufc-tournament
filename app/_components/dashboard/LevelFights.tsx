@@ -10,7 +10,7 @@ interface Props {
 
 export async function LevelFights({ tournamentId, level }: Readonly<Props>) {
   const fights: { data: IFight[] } = await serverFetchData(
-    `/fights/${tournamentId}?level=${level}`,
+    `/fights?tournament=${tournamentId}&level=${level}`,
   );
 
   if (!fights.data) return null;

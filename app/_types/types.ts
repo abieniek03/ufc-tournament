@@ -62,10 +62,12 @@ export interface IFight {
   redFighter: {
     firstName: string;
     lastName: string;
+    nationalityId: string;
   };
   blueFighter: {
     firstName: string;
     lastName: string;
+    nationalityId: string;
   };
   redScore: {
     ranking: number;
