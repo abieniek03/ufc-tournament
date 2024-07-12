@@ -51,7 +51,7 @@ export async function BracketElement({ fightId }: Readonly<Props>) {
   const fight: { data: IFight } = await serverFetchData(`/fights/${fightId}`);
 
   return (
-    <div className="relative flex flex-col border border-content/5 p-2">
+    <div className="relative flex flex-col border border-content/5  bg-primary-500/5 p-2">
       <BracketElementFighterLabel
         fighter={{ id: fight.data.redFighterId, ...fight.data.redFighter }}
         winner={
@@ -70,8 +70,8 @@ export async function BracketElement({ fightId }: Readonly<Props>) {
       />
       {fight.data.winner && (
         <div className="absolute -right-4 top-1/2 flex -translate-y-1/2 flex-col text-center text-xs lg:text-sm">
-          <span className="bg-primary-500 px-1">{fight.data.method}</span>
-          <span className="bg-primary-content px-1 text-primary-500">
+          <span className="bg-primary-500 px-1.5">{fight.data.method}</span>
+          <span className="bg-primary-content px-1.5 text-primary-500">
             R{fight.data.round}
           </span>
         </div>

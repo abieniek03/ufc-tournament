@@ -17,8 +17,8 @@ export function WinnerLabel() {
 export function FightLabel({ data }: Readonly<Props>) {
   return (
     <div className="mx-auto mb-4 w-full border-b border-content/5 px-4 pb-4 text-xl">
-      <div className="mb-4 grid w-full grid-cols-3 font-bold uppercase">
-        <div className="inline-flex flex-col items-start">
+      <div className="mb-4 grid w-full grid-cols-3">
+        <div className="inline-flex items-start justify-between">
           <span
             className={clsx(
               data.winner &&
@@ -27,28 +27,53 @@ export function FightLabel({ data }: Readonly<Props>) {
                 "opacity-25",
             )}
           >
-            {data.redFighter
-              ? `${data.redFighter.firstName} ${data.redFighter.lastName}`
-              : "TBD"}
+            {data.redFighter ? (
+              <div>
+                <p className="text-sm md:text-lg lg:text-xl">
+                  {data.redFighter.firstName}
+                </p>
+                <p className="text-xl font-bold uppercase md:text-2xl lg:text-3xl">
+                  {data.redFighter.lastName}
+                </p>
+              </div>
+            ) : (
+              "TBD"
+            )}
           </span>
           {data.winner && data.winner === data.redFighterId && <WinnerLabel />}
         </div>
         <span className="text-center text-sm">vs</span>
-        <div className="inline-flex flex-col items-end">
+
+        <div
+          className={clsx(
+            "flex items-start",
+            data.winner && data.winner === data.blueFighterId
+              ? "justify-between"
+              : "justify-end",
+          )}
+        >
+          {data.winner && data.winner === data.blueFighterId && <WinnerLabel />}
           <span
             className={clsx(
-              "text-right",
               data.winner &&
                 data.winner !== data.blueFighterId &&
                 data.winner !== "DRAW" &&
                 "opacity-25",
             )}
           >
-            {data.blueFighter
-              ? `${data.blueFighter.firstName} ${data.blueFighter.lastName}`
-              : "TBD"}
+            {data.blueFighter ? (
+              <div className="text-right">
+                <p className="text-sm md:text-lg lg:text-xl">
+                  {data.blueFighter.firstName}
+                </p>
+                <p className="text-xl font-bold uppercase md:text-2xl lg:text-3xl">
+                  {data.blueFighter.lastName}
+                </p>
+              </div>
+            ) : (
+              "TBD"
+            )}
           </span>
-          {data.winner && data.winner === data.blueFighterId && <WinnerLabel />}
         </div>
       </div>
       {data.winner ? (

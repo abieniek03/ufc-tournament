@@ -29,19 +29,19 @@ export default async function TournamentGroupPage({
     `/bracket/${params.id}`,
   );
 
-  console.log(bracket);
-
   return (
     <>
-      <header className="mb-8 flex items-center justify-between">
+      <header className="mb-4 flex items-center justify-between">
         <div>
           <Link href="/tournaments" className="py-2 text-primary-500">
             <i className="ri-arrow-left-line font-bold" />
             <span className="ml-1 text-sm font-semibold">Go back</span>
           </Link>
-          <h1 className="uppercase">
-            {tournament.data.weightclass.name} |{" "}
-            {tournament.data.weightclass.limit} lbs
+          <h1 className="text-xl uppercase lg:text-2xl">
+            <span className="font-semibold">
+              {tournament.data.weightclass.name}
+            </span>{" "}
+            | {tournament.data.weightclass.limit} lbs
           </h1>
         </div>
         <DeleteTournament tournamentId={params.id} />

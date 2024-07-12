@@ -17,7 +17,7 @@ export function Bracket({ data }: Readonly<Props>) {
   return (
     <div
       className={clsx(
-        "mb-36 hidden items-center md:flex lg:gap-20 lg:text-lg",
+        "mb-36 hidden items-center py-16 md:flex lg:gap-20 lg:text-lg",
         quarterfinals.length ? "justify-around" : "justify-center gap-20",
       )}
     >
