@@ -39,7 +39,7 @@ export async function Tournament({ data }: Readonly<Props>) {
       <div className="mb-4 mt-6 font-bold uppercase">
         {winnerId ? (
           <>
-            <p className="-mb-1 text-lg">
+            <p className="-mb-1 text-lg text-primary-500">
               {winnerData.data?.firstName} {winnerData.data?.lastName}
             </p>
             <p className="text-[0.6rem] font-normal">
