@@ -16,8 +16,8 @@ export function WinnerLabel() {
 
 export function FightLabel({ data }: Readonly<Props>) {
   return (
-    <div className="mx-auto mb-4 w-full border-b border-content/5 px-4 pb-4 text-xl">
-      <div className="mb-4 grid w-full grid-cols-3">
+    <div className="mx-auto w-full border-b border-primary-500/50 py-8 text-xl">
+      <div className="mb-4 grid w-full grid-cols-2 px-4">
         <div className="inline-flex items-start justify-between">
           <span
             className={clsx(
@@ -28,31 +28,27 @@ export function FightLabel({ data }: Readonly<Props>) {
             )}
           >
             {data.redFighter ? (
-              <div>
+              <div
+                className={clsx(
+                  data.winner &&
+                    data.winner === data.redFighterId &&
+                    "text-primary-500",
+                )}
+              >
                 <p className="text-sm md:text-lg lg:text-xl">
                   {data.redFighter.firstName}
                 </p>
-                <p className="text-xl font-bold uppercase md:text-2xl lg:text-3xl">
+                <p className="-mt-1 text-xl font-bold uppercase md:text-2xl lg:text-3xl">
                   {data.redFighter.lastName}
                 </p>
               </div>
             ) : (
-              "TBD"
+              <p className="font-bold">TBD</p>
             )}
           </span>
-          {data.winner && data.winner === data.redFighterId && <WinnerLabel />}
         </div>
-        <span className="text-center text-sm">vs</span>
 
-        <div
-          className={clsx(
-            "flex items-start",
-            data.winner && data.winner === data.blueFighterId
-              ? "justify-between"
-              : "justify-end",
-          )}
-        >
-          {data.winner && data.winner === data.blueFighterId && <WinnerLabel />}
+        <div className="flex items-start justify-end">
           <span
             className={clsx(
               data.winner &&
@@ -62,16 +58,23 @@ export function FightLabel({ data }: Readonly<Props>) {
             )}
           >
             {data.blueFighter ? (
-              <div className="text-right">
+              <div
+                className={clsx(
+                  "text-right",
+                  data.winner &&
+                    data.winner === data.blueFighterId &&
+                    "text-primary-500",
+                )}
+              >
                 <p className="text-sm md:text-lg lg:text-xl">
                   {data.blueFighter.firstName}
                 </p>
-                <p className="text-xl font-bold uppercase md:text-2xl lg:text-3xl">
+                <p className="-mt-1 text-xl font-bold uppercase md:text-2xl lg:text-3xl">
                   {data.blueFighter.lastName}
                 </p>
               </div>
             ) : (
-              "TBD"
+              <p className="font-bold">TBD</p>
             )}
           </span>
         </div>
@@ -83,7 +86,7 @@ export function FightLabel({ data }: Readonly<Props>) {
               Draw
             </span>
           )}
-          <div className="grid w-full grid-cols-3 gap-3 border-t border-primary-500 pt-4 text-center text-sm font-bold">
+          <div className="grid w-full grid-cols-3 gap-3 border-t border-content/10 pt-4 text-center text-sm font-bold">
             <div>
               <p className="uppercase text-primary-500">Round</p>
               <p>{data.round}</p>

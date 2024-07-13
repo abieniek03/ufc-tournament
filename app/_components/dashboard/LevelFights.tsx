@@ -18,21 +18,23 @@ export async function LevelFights({ tournamentId, level }: Readonly<Props>) {
   return (
     <section>
       <div className="mb-24">
-        <h2 className="text-center text-xl font-bold uppercase text-primary-500 lg:text-2xl">
+        <h2 className="bg-primary-500/10 py-2 text-center text-2xl  font-bold uppercase text-primary-500 md:text-3xl lg:text-4xl">
           {level.replace("_", " ")}
         </h2>
-        <div className="my-16 flex flex-col gap-4">
+        <div className="flex flex-col">
           {fights.data.map((el: IFight, index: number) => (
             <FightLabel data={el} key={index} />
           ))}
         </div>
         {!fights.data[0].blueFighterId &&
           fights.data[0].level === "ROUND_1" && (
-            <DrawButton
-              tournamentId={tournamentId}
-              level={level}
-              label="Draw opponents"
-            />
+            <div className="my-12 flex items-center justify-center">
+              <DrawButton
+                tournamentId={tournamentId}
+                level={level}
+                label="Draw opponents"
+              />
+            </div>
           )}
       </div>
     </section>

@@ -42,10 +42,8 @@ export async function DrawButton({
   });
 
   return (
-    <div className="mb-16 flex items-center justify-center">
-      <Button styleType="primary" onClick={() => drawOponents.mutate()}>
-        {label}
-      </Button>
-    </div>
+    <Button styleType="primary" onClick={() => drawOponents.mutate()}>
+      {label}
+    </Button>
   );
 }
