@@ -42,8 +42,8 @@ export function AllTournaments() {
           ))}
         {isSuccess &&
           data.data.map((el: ITournament, index: number) => (
-            <button onClick={() => setIsRedirecting(true)}>
-              <TournamentItem key={index} data={el} />
+            <button key={index} onClick={() => setIsRedirecting(true)}>
+              <TournamentItem data={el} />
             </button>
           ))}
       </div>
