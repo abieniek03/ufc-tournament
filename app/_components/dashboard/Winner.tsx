@@ -1,8 +1,10 @@
 import Image from "next/image";
+import clsx from "clsx";
+import { differenceInYears } from "date-fns";
+
+import noCountryFlag from "@/app/_assets/no-country-flag.png";
 import { IFighter, IScore } from "@/app/_types/types";
 import { serverFetchData } from "@/app/_utils/fetch/server";
-import noCountryFlag from "@/app/_assets/no-country-flag.png";
-import { differenceInYears } from "date-fns";
 
 interface Props {
   id: string;
@@ -29,8 +31,13 @@ export async function Winner({ id, tournamentId }: Readonly<Props>) {
         <div>
           <div>
             <div className="mb-4 flex justify-center gap-4 border-b border-primary-500/50 pb-4">
-              <p className="text-7xl font-bold opacity-25">
-                #{winnerScore.ranking}
+              <p
+                className={clsx(
+                  "text-7xl font-bold",
+                  winnerScore.ranking === 0 ? "text-gold" : "opacity-25",
+                )}
+              >
+                {winnerScore.ranking === 0 ? "C" : ` #${winnerScore.ranking}`}
               </p>
               <div>
                 <div className="flex items-center justify-between">
@@ -66,9 +73,9 @@ export async function Winner({ id, tournamentId }: Readonly<Props>) {
               <p>
                 <span className="mr-1 text-xs uppercase">Fighting out: </span>
                 <span className="text-primary-500">
-                  {winnerData.data.city},{" "}
-                  {winnerData.data.nationalityId !== "US" &&
-                    winnerData.data.nationality}
+                  {winnerData.data.city}
+                  {!winnerData.data.city.includes(",") &&
+                    `, ${winnerData.data.nationality}`}
                 </span>
               </p>
             </div>

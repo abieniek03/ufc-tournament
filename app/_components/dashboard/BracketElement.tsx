@@ -1,8 +1,9 @@
 import Image from "next/image";
 import clsx from "clsx";
+
 import noCountryFlag from "@/app/_assets/no-country-flag.png";
-import { serverFetchData } from "@/app/_utils/fetch/server";
 import { IFight } from "@/app/_types/types";
+import { serverFetchData } from "@/app/_utils/fetch/server";
 
 interface PropsBracketElementFighterLabel {
   fighter?: {

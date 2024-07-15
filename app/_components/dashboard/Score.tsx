@@ -1,7 +1,8 @@
-import { serverFetchData } from "@/app/_utils/fetch/server";
-import { IFight, IScore } from "@/app/_types/types";
-import { RankingLabel } from "./RankingLabel";
 import clsx from "clsx";
+import { RankingLabel } from "./RankingLabel";
+
+import { IFight, IScore } from "@/app/_types/types";
+import { serverFetchData } from "@/app/_utils/fetch/server";
 
 interface Props {
   tournamentId: string;

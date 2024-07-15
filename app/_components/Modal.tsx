@@ -8,7 +8,9 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
+
 import { Button } from "./Button";
+
 import { IChildren, ButtonStyleType } from "../_types/types";
 
 interface Props extends IChildren {

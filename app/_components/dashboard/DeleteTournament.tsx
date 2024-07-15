@@ -1,9 +1,11 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import axios from "@/app/_utils/axios/axiosInstance";
+
 import { Modal } from "../Modal";
 import { Button } from "../Button";
+
+import axios from "@/app/_utils/axios/axiosInstance";
 import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 
 interface Props {

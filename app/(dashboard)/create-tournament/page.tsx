@@ -1,12 +1,7 @@
 "use client";
 
 import { DashboardPageTitle } from "@/app/_components/dashboard/DashboardPageTitle";
-import {
-  FormProvider,
-  SubmitHandler,
-  useForm,
-  useWatch,
-} from "react-hook-form";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 import {
   Tournament,
   TournamentSchema,

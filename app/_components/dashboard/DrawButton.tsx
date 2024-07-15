@@ -3,10 +3,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "../Button";
 
-import axios from "@/app/_utils/axios/axiosInstance";
-
-import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
 import { Level } from "@/app/_types/types";
+import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
+import axios from "@/app/_utils/axios/axiosInstance";
 
 interface Props {
   tournamentId: string;
@@ -42,10 +41,8 @@ export async function DrawButton({
   });
 
   return (
-    <div className="mb-16 flex items-center justify-center">
-      <Button styleType="primary" onClick={() => drawOponents.mutate()}>
-        {label}
-      </Button>
-    </div>
+    <Button styleType="primary" onClick={() => drawOponents.mutate()}>
+      {label}
+    </Button>
   );
 }
