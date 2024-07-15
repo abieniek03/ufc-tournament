@@ -10,7 +10,7 @@ export function RankingLabel({ position }: Readonly<Props>) {
   return (
     <span
       className={clsx(
-        "flex h-5 w-5 items-center justify-center text-xs text-black",
+        "flex h-5 w-5 items-center justify-center text-xs font-semibold text-black",
         isChampion ? "bg-gold" : "bg-gray-300",
       )}
     >
