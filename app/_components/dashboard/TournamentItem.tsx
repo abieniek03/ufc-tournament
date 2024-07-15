@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
-import { formatDate } from "../../_utils/helpers/formatDate";
+
 import {
   IFight,
   IFighter,
   ITournament,
   IWeightclass,
 } from "@/app/_types/types";
+import { formatDate } from "../../_utils/helpers/formatDate";
 import { clientFetchData } from "@/app/_utils/fetch/client";
 
 export interface Props {

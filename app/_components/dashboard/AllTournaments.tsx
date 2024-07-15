@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { TournamentItem } from "./TournamentItem";
 import { LoadingSkeleton } from "../LoadingSkeleton";
-
-import { clientFetchData } from "@/app/_utils/fetch/client";
-import { ITournament } from "@/app/_types/types";
 import { LoadingPopup } from "../LoadingPopup";
-import { useState } from "react";
+
+import { ITournament } from "@/app/_types/types";
+import { clientFetchData } from "@/app/_utils/fetch/client";
 
 export function AllTournaments() {
   const [isRedirecting, setIsRedirecting] = useState<boolean>(false);

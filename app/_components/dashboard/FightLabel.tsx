@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import { IFight } from "@/app/_types/types";
+
 import { UpdateFightResult } from "./UpdateFightResult";
+import { IFight } from "@/app/_types/types";
 
 interface Props {
   data: IFight;

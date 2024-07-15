@@ -1,9 +1,10 @@
 import Image from "next/image";
+import clsx from "clsx";
+import { differenceInYears } from "date-fns";
+
+import noCountryFlag from "@/app/_assets/no-country-flag.png";
 import { IFighter, IScore } from "@/app/_types/types";
 import { serverFetchData } from "@/app/_utils/fetch/server";
-import noCountryFlag from "@/app/_assets/no-country-flag.png";
-import { differenceInYears } from "date-fns";
-import clsx from "clsx";
 
 interface Props {
   id: string;

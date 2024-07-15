@@ -1,5 +1,6 @@
 import { FightLabel } from "./FightLabel";
 import { DrawButton } from "./DrawButton";
+
 import { IFight, Level } from "@/app/_types/types";
 import { serverFetchData } from "@/app/_utils/fetch/server";
 

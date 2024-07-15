@@ -1,9 +1,10 @@
 "use client";
 
 import { type ComponentProps } from "react";
-import { useFormContext, useController } from "react-hook-form";
-import { stylesFormLabel, stylesFormField } from "@/app/_styles/styles";
 import clsx from "clsx";
+import { useFormContext, useController } from "react-hook-form";
+
+import { stylesFormLabel, stylesFormField } from "@/app/_styles/styles";
 
 interface Props {
   id: string;

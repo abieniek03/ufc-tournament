@@ -1,6 +1,8 @@
-import { IBracket } from "@/app/_types/types";
-import { BracketElement } from "./BracketElement";
 import clsx from "clsx";
+
+import { BracketElement } from "./BracketElement";
+
+import { IBracket } from "@/app/_types/types";
 
 interface Props {
   data: IBracket[];

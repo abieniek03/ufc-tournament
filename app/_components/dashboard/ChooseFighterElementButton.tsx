@@ -1,11 +1,13 @@
 "use client";
 
-import { type ComponentProps } from "react";
 import Image from "next/image";
+import { type ComponentProps } from "react";
 import clsx from "clsx";
+
+import { RankingLabel } from "./RankingLabel";
+
 import { useCreateTournamentStore } from "@/app/_store/store";
 import { IFighter } from "@/app/_types/types";
-import { RankingLabel } from "./RankingLabel";
 
 interface Props {
   fighterData: IFighter;

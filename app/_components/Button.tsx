@@ -1,6 +1,7 @@
-import { type ComponentProps } from "react";
 import Link from "next/link";
+import { type ComponentProps } from "react";
 import clsx from "clsx";
+
 import { IChildren, ButtonStyleType } from "../_types/types";
 
 interface Props extends IChildren {

@@ -2,9 +2,10 @@
 
 import { type ComponentProps } from "react";
 import { useFormContext, useController } from "react-hook-form";
+import clsx from "clsx";
+
 import { stylesFormLabel, stylesFormField } from "@/app/_styles/styles";
 import { IOption } from "@/app/_types/types";
-import clsx from "clsx";
 
 interface Props {
   id: string;

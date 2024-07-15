@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal } from "../Modal";
+import { useEffect } from "react";
 import {
   FormProvider,
   SubmitHandler,
@@ -12,14 +12,16 @@ import {
   Result,
   ResultSchema,
 } from "@/app/_utils/validation/update-result.schema";
+import { useMutation } from "@tanstack/react-query";
+
+import { Modal } from "../Modal";
 import { FormInput } from "../form/FormInput";
 import { FormSelect } from "../form/FormSelect";
 import { Button } from "../Button";
+
 import { IOption, Level } from "@/app/_types/types";
-import { useMutation } from "@tanstack/react-query";
-import axios from "@/app/_utils/axios/axiosInstance";
 import { getAuthToken } from "@/app/_utils/helpers/getAuthToken";
-import { useEffect } from "react";
+import axios from "@/app/_utils/axios/axiosInstance";
 
 interface Props {
   fightId: string;
