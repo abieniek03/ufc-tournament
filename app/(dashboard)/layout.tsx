@@ -1,4 +1,5 @@
 import { DashboardNavbar } from "../_components/dashboard/DashboardNavbar";
+
 import { IChildren as Props } from "../_types/types";
 
 export default function DashboardLayout({ children }: Readonly<Props>) {
