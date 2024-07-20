@@ -7,7 +7,7 @@ export function InfoSelectFighters() {
     <section className="mb-36 flex flex-col items-center gap-4 lg:flex-row lg:gap-8">
       <div className="w-full">
         <SectionTitle>Select Fighters</SectionTitle>
-        <p className="leading-loose opacity-85">
+        <p className="leading-loose opacity-75">
           Choose 8 or 16 fighters from a given weightclass. You can select any
           UFC fighter who is in the game and is currently in the organization,
           as well as those who are no longer with the UFC but have had at least
