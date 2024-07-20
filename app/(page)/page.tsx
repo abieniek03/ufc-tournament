@@ -3,6 +3,7 @@ import { Hero } from "../_components/main-page/Hero";
 import { InfoSelectFighters } from "../_components/main-page/InfoSelectFighters";
 import { InfoScoreStage } from "../_components/main-page/InfoScoreStage";
 import { InfoKnockoutStage } from "../_components/main-page/InfoKnockoutStage";
+import { Footer } from "../_components/main-page/Footer";
 
 export default function MainPage() {
   return (
@@ -14,6 +15,7 @@ export default function MainPage() {
         <InfoScoreStage />
         <InfoKnockoutStage />
       </main>
+      <Footer />
     </>
   );
 }
