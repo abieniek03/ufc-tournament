@@ -28,7 +28,9 @@ export function ChooseFighterElementButton({
       type="button"
       className={clsx(
         "py-2focus:border-border-active w-full rounded-md border bg-input px-3 py-1.5 text-sm focus:outline-none",
-        selectedFighters.includes(id) ? "border-primary-500" : "border-border",
+        selectedFighters.includes(id)
+          ? "border-primary-500 bg-primary-500/10"
+          : "border-border",
       )}
       data-id={id}
       {...rest}
@@ -36,7 +38,7 @@ export function ChooseFighterElementButton({
       <div className="flex items-center justify-between">
         <div className="flex gap-4">
           <Image
-            src={`https://flagsapi.com/${fighterData.nationalityId}/flat/64.png` }
+            src={`https://flagsapi.com/${fighterData.nationalityId}/flat/64.png`}
             alt=""
             width={25}
             height={25}
