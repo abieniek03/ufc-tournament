@@ -9,7 +9,7 @@ export default function MainPage() {
     <>
       <Navbar />
       <Hero />
-      <main className="mx-auto w-full max-w-screen-xl p-4 pt-36">
+      <main className="main-page mx-auto w-full max-w-screen-xl p-4 pt-16 lg:pt-24">
         <InfoSelectFighters />
         <InfoScoreStage />
         <InfoKnockoutStage />
