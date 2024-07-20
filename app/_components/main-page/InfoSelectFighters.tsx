@@ -4,7 +4,10 @@ import selectFightersImage from "@/app/_assets/select-fighters.png";
 
 export function InfoSelectFighters() {
   return (
-    <section className="flex flex-col items-center gap-4 lg:flex-row lg:gap-8">
+    <section
+      id="about"
+      className="flex flex-col items-center gap-4 lg:flex-row lg:gap-8"
+    >
       <div className="w-full">
         <SectionTitle>Select Fighters</SectionTitle>
         <p className="leading-loose opacity-75">
