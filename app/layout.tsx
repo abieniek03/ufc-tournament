@@ -34,7 +34,7 @@ export default function RootLayout({ children }: Readonly<Props>) {
         },
       }}
     >
-      <html lang="en">
+      <html lang="en" className="scroll-smooth">
         <body className={`${font.className} bg-background text-content`}>
           <Providers>{children}</Providers>
         </body>
