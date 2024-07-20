@@ -42,12 +42,12 @@ export function Navbar() {
           </a>
         </div>
         <div className="flex gap-2">
-          <SignUpButton mode="modal">
-            <Button styleType="primary">Sign Up</Button>
-          </SignUpButton>
           <SignInButton mode="modal">
             <Button styleType="secondary">Sign In</Button>
           </SignInButton>
+          <SignUpButton mode="modal">
+            <Button styleType="primary">Sign Up</Button>
+          </SignUpButton>
         </div>
       </div>
     </header>
