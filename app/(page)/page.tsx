@@ -8,7 +8,7 @@ export default function MainPage() {
     <>
       <Navbar />
       <Hero />
-      <main className="sticky z-50 mx-auto w-full max-w-screen-xl p-4">
+      <main className="mx-auto w-full max-w-screen-xl p-4 pt-36">
         <InfoSelectFighters />
         <InfoScoreStage />
       </main>
