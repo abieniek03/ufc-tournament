@@ -53,7 +53,7 @@ export function ChooseFighterElementButton({
             <RankingLabel position={fighterData.ranking?.position} />
           </div>
         </div>
-        <span className="hidden font-bold md:inline">{`${fighterData.win}-${fighterData.lose}-${fighterData.draw} ${fighterData.noContest ? `, ${fighterData.noContest}NC` : ""}`}</span>
+        <span className="hidden font-bold sm:inline">{`${fighterData.win}-${fighterData.lose}-${fighterData.draw} ${fighterData.noContest ? `, ${fighterData.noContest}NC` : ""}`}</span>
       </div>
     </button>
   );

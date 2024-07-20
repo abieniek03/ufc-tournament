@@ -7,9 +7,5 @@ export default function PageLayout({ children }: Readonly<Props>) {
 
   if (userId) redirect("/tournaments");
 
-  return (
-    <>
-      <main>{children}</main>
-    </>
-  );
+  return <>{children}</>;
 }
