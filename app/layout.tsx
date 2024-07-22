@@ -1,19 +1,44 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
-import { IChildren as Props } from "./_types/types";
+import "remixicon/fonts/remixicon.css";
 
-const font = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
+import { IChildren as Props } from "./_types/types";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+import Providers from "./_hoc/Providers";
+
+const font = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
-	title: "UFC Game Tournament",
-	description: "Application for following tournaments in UFC game.",
+  title: {
+    template: "%s | UFC Game Tournament",
+    default: "UFC Game Tournament",
+  },
+  description: "Application for following tournaments in UFC game.",
 };
 
 export default function RootLayout({ children }: Readonly<Props>) {
-	return (
-		<html lang="en">
-			<body className={`${font.className}`}>{children}</body>
-		</html>
-	);
+  return (
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+        variables: {
+          colorBackground: "#06061b",
+          colorInputBackground: "#0b0b1d",
+          colorPrimary: "#0066ff",
+          colorTextOnPrimaryBackground: "#ffffff",
+        },
+      }}
+    >
+      <html lang="en" className="scroll-smooth">
+        <body className={`${font.className} bg-background text-content`}>
+          <Providers>{children}</Providers>
+        </body>
+      </html>
+    </ClerkProvider>
+  );
 }
