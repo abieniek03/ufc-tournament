@@ -11,6 +11,7 @@ import {
 } from "@/app/_types/types";
 import { formatDate } from "../../_utils/helpers/formatDate";
 import { clientFetchData } from "@/app/_utils/fetch/client";
+import { useEffect } from "react";
 
 export interface Props {
   data: ITournament;
@@ -29,7 +30,9 @@ export function TournamentItem({ data }: Readonly<Props>) {
       await clientFetchData(`/fights?tournament=${data.id}&level=FINAL`),
   });
 
-  const winnerId = finalFight.data?.data[0]?.winner ?? null;
+  const winnerId = finalFight.data?.data?.length
+    ? finalFight.data?.data[0]?.winner
+    : "";
 
   const winnerData = useQuery({
     queryKey: ["winner", winnerId],
@@ -50,7 +53,7 @@ export function TournamentItem({ data }: Readonly<Props>) {
       </div>
 
       <div className="mb-4 mt-6 font-bold uppercase">
-        {winnerData.data ? (
+        {finalFight.data?.data?.length && winnerData.data ? (
           <>
             <p className="-mb-1 text-lg text-primary-500">
               {winnerData.data.data?.firstName} {winnerData.data.data?.lastName}
