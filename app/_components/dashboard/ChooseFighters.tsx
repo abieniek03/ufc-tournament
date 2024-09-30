@@ -51,6 +51,8 @@ export function ChooseFighters({
         weightclassId: weightclassId,
         fighters: selectedFighters,
       };
+
+      console.log(selectedFighters);
       try {
         const response = await axios.post("/tournaments", data, {
           headers: {
