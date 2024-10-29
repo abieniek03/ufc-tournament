@@ -10,8 +10,8 @@ Deployment: Vercel
 API DOCS: https://apiturniej.bieda.it/ \
 APPLICATION INTERFACE: https://ufc-tournament.vercel.app/
 
-####Sample sing in data:
-  -  email: uzytkownik@test.pl
+#### Sample sing in data:
+  -  email: test@test.pl
   -  password: Testowe.123
 
 ## Author
