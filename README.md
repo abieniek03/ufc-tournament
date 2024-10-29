@@ -7,7 +7,7 @@ Backend: NestJS, Prisma, PostgreSQL, REST API, Clerk \
 Deployment: Vercel
 
 ### Checkout project
-API DOCS: https://apiturniej.bieda.it/
+API DOCS: https://apiturniej.bieda.it/ \
 APPLICATION INTERFACE: https://ufc-tournament.vercel.app/
 
 ####Sample sing in data:
