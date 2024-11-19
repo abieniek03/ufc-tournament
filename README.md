@@ -14,5 +14,9 @@ APPLICATION INTERFACE: https://ufc-tournament.vercel.app/
   -  email: test@test.pl
   -  password: Testowe.123
 
+## ℹ️INFO
+Currently available only LIGHTWEIGHT and MIDDLEWEIGHT. \
+More weightclass will be add soon.
+
 ## Author
-  - [@abieniek03](https://www.github.com/abieniek03) - Full-stack developer
+  - [@abieniek03](https://www.github.com/abieniek03) - Fullstack developer
