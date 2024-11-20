@@ -1,7 +1,7 @@
 # UFC TOURNAMENT WEB APPLICATION
 Web application for manage tourmanent in EA Sports UFC 5.
 
-## 💼TECHSTACK
+## 💼 TECHSTACK
 Frontend: TypeScript, Next.js, TailwindCSS, shadcn/ui \
 Backend: NestJS, Prisma, PostgreSQL, REST API, Clerk \
 Deployment: Vercel
@@ -14,7 +14,7 @@ APPLICATION INTERFACE: https://ufc-tournament.vercel.app/
   -  email: test@test.pl
   -  password: Testowe.123
 
-## ℹ️INFO
+## ℹ️ INFO
 Currently available only LIGHTWEIGHT and MIDDLEWEIGHT. \
 More weightclass will be add soon.
 
